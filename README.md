@@ -1,4 +1,4 @@
-# Audio Cartographer
+# Audio Mapper
 
 Client-side tool for visualizing audio as a 2D map. Upload audio, segment it by onsets, extract features, reduce to 2D, click dots to listen. Runs entirely in the browser.
 
