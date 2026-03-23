@@ -24,9 +24,9 @@
   --font-mono: 'JetBrains Mono', monospace;
   --font-serif: 'Instrument Serif', serif;
 }
-
+ 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
 html, body { 
   height: 100%; 
   background: var(--bg); 
@@ -35,10 +35,10 @@ html, body {
   font-size: 13px;
   overflow: hidden;
 }
-
+ 
 /* LAYOUT */
 .app { display: grid; grid-template-rows: auto 1fr; height: 100vh; }
-
+ 
 header {
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@ header {
   background: var(--bg-elevated);
   z-index: 100;
 }
-
+ 
 header h1 {
   font-family: var(--font-serif);
   font-size: 22px;
@@ -56,7 +56,7 @@ header h1 {
   letter-spacing: 0.5px;
   display: flex; align-items: center; gap: 10px;
 }
-
+ 
 header h1 span.icon {
   display: inline-block;
   width: 28px; height: 28px;
@@ -71,13 +71,13 @@ header h1 span.icon::after {
   border: 2px solid var(--bg);
   border-radius: 50%;
 }
-
+ 
 .status-bar {
   font-size: 11px;
   color: var(--text-dim);
   display: flex; align-items: center; gap: 8px;
 }
-
+ 
 .status-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
@@ -85,13 +85,13 @@ header h1 span.icon::after {
   transition: background 0.3s;
 }
 .status-dot.active { background: var(--accent2); box-shadow: 0 0 8px var(--accent2-glow); }
-
+ 
 .main-content {
   display: grid;
   grid-template-columns: 320px 1fr;
   overflow: hidden;
 }
-
+ 
 /* SIDEBAR */
 .sidebar {
   border-right: 1px solid var(--border);
@@ -99,14 +99,14 @@ header h1 span.icon::after {
   overflow-y: auto;
   padding: 0;
 }
-
+ 
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
+ 
 .panel {
   border-bottom: 1px solid var(--border);
 }
-
+ 
 .panel-header {
   padding: 14px 20px;
   font-size: 10px;
@@ -120,20 +120,20 @@ header h1 span.icon::after {
   cursor: pointer;
   user-select: none;
 }
-
+ 
 .panel-header:hover { color: var(--text); }
 .panel-header .chevron { transition: transform 0.2s; font-size: 14px; }
 .panel-header.collapsed .chevron { transform: rotate(-90deg); }
-
+ 
 .panel-body {
   padding: 0 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
+ 
 .panel-body.collapsed { display: none; }
-
+ 
 /* DROP ZONE */
 .drop-zone {
   border: 1.5px dashed var(--border);
@@ -144,23 +144,23 @@ header h1 span.icon::after {
   transition: all 0.2s;
   position: relative;
 }
-
+ 
 .drop-zone:hover, .drop-zone.dragover {
   border-color: var(--accent);
   background: rgba(255, 107, 74, 0.04);
 }
-
+ 
 .drop-zone .label {
   font-size: 12px;
   color: var(--text-dim);
   line-height: 1.6;
 }
-
+ 
 .drop-zone .label strong {
   color: var(--accent);
   font-weight: 500;
 }
-
+ 
 .file-list {
   display: flex;
   flex-direction: column;
@@ -168,7 +168,7 @@ header h1 span.icon::after {
   max-height: 120px;
   overflow-y: auto;
 }
-
+ 
 .file-item {
   display: flex;
   align-items: center;
@@ -178,16 +178,16 @@ header h1 span.icon::after {
   border-radius: 4px;
   font-size: 11px;
 }
-
+ 
 .file-item .name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 180px;
 }
-
+ 
 .file-item .meta { color: var(--text-muted); font-size: 10px; }
-
+ 
 .file-item .remove {
   background: none; border: none;
   color: var(--text-muted);
@@ -196,7 +196,7 @@ header h1 span.icon::after {
   padding: 0 2px;
 }
 .file-item .remove:hover { color: var(--danger); }
-
+ 
 /* FORM ELEMENTS */
 label.field-label {
   font-size: 10px;
@@ -207,9 +207,9 @@ label.field-label {
   display: block;
   margin-bottom: 6px;
 }
-
+ 
 .checkbox-group { display: flex; flex-direction: column; gap: 6px; }
-
+ 
 .checkbox-item {
   display: flex;
   align-items: center;
@@ -221,9 +221,9 @@ label.field-label {
   transition: background 0.15s;
   font-size: 12px;
 }
-
+ 
 .checkbox-item:hover { background: #1e1e2c; }
-
+ 
 .checkbox-item input[type="checkbox"] {
   appearance: none;
   width: 14px; height: 14px;
@@ -233,12 +233,12 @@ label.field-label {
   position: relative;
   flex-shrink: 0;
 }
-
+ 
 .checkbox-item input[type="checkbox"]:checked {
   background: var(--accent);
   border-color: var(--accent);
 }
-
+ 
 .checkbox-item input[type="checkbox"]:checked::after {
   content: '✓';
   position: absolute;
@@ -250,9 +250,9 @@ label.field-label {
   color: white;
   font-weight: bold;
 }
-
+ 
 .radio-group { display: flex; flex-direction: column; gap: 6px; }
-
+ 
 .radio-item {
   display: flex;
   align-items: center;
@@ -264,9 +264,9 @@ label.field-label {
   transition: background 0.15s;
   font-size: 12px;
 }
-
+ 
 .radio-item:hover { background: #1e1e2c; }
-
+ 
 .radio-item input[type="radio"] {
   appearance: none;
   width: 14px; height: 14px;
@@ -276,11 +276,11 @@ label.field-label {
   position: relative;
   flex-shrink: 0;
 }
-
+ 
 .radio-item input[type="radio"]:checked {
   border-color: var(--accent2);
 }
-
+ 
 .radio-item input[type="radio"]:checked::after {
   content: '';
   position: absolute;
@@ -289,19 +289,19 @@ label.field-label {
   background: var(--accent2);
   border-radius: 50%;
 }
-
+ 
 .range-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
+ 
 .range-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
+ 
 input[type="range"] {
   flex: 1;
   appearance: none;
@@ -310,7 +310,7 @@ input[type="range"] {
   border-radius: 2px;
   outline: none;
 }
-
+ 
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 14px; height: 14px;
@@ -318,14 +318,14 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   cursor: pointer;
 }
-
+ 
 .range-value {
   font-size: 11px;
   color: var(--accent);
   min-width: 36px;
   text-align: right;
 }
-
+ 
 /* BUTTONS */
 .btn {
   padding: 10px 20px;
@@ -339,7 +339,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   transition: all 0.2s;
 }
-
+ 
 .btn-primary {
   background: var(--accent);
   color: white;
@@ -347,27 +347,27 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-glow); }
 .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-
+ 
 .btn-secondary {
   background: var(--bg-surface);
   color: var(--text-dim);
   border: 1px solid var(--border);
 }
 .btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
-
+ 
 /* CANVAS AREA */
 .canvas-area {
   position: relative;
   overflow: hidden;
   background: var(--bg);
 }
-
+ 
 .canvas-area canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
-
+ 
 /* EMPTY STATE */
 .empty-state {
   position: absolute;
@@ -379,37 +379,37 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 16px;
   pointer-events: none;
 }
-
+ 
 .empty-state .rings {
   width: 120px; height: 120px;
   position: relative;
   opacity: 0.15;
 }
-
+ 
 .empty-state .rings .ring {
   position: absolute;
   border: 1.5px solid var(--text-dim);
   border-radius: 50%;
   animation: pulse-ring 3s ease-in-out infinite;
 }
-
+ 
 .empty-state .rings .ring:nth-child(1) { inset: 0; animation-delay: 0s; }
 .empty-state .rings .ring:nth-child(2) { inset: 15px; animation-delay: 0.5s; }
 .empty-state .rings .ring:nth-child(3) { inset: 30px; animation-delay: 1s; }
 .empty-state .rings .ring:nth-child(4) { inset: 45px; animation-delay: 1.5s; }
-
+ 
 @keyframes pulse-ring {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
 }
-
+ 
 .empty-state p {
   font-size: 13px;
   color: var(--text-muted);
   font-style: italic;
   font-family: var(--font-serif);
 }
-
+ 
 /* TOOLTIP */
 .tooltip {
   position: absolute;
@@ -424,10 +424,10 @@ input[type="range"]::-webkit-slider-thumb {
   max-width: 220px;
   display: none;
 }
-
+ 
 .tooltip .tt-title { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
 .tooltip .tt-row { color: var(--text-dim); margin: 2px 0; }
-
+ 
 /* PROGRESS */
 .progress-bar {
   width: 100%;
@@ -436,7 +436,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 2px;
   overflow: hidden;
 }
-
+ 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -444,14 +444,14 @@ input[type="range"]::-webkit-slider-thumb {
   transition: width 0.3s;
   width: 0%;
 }
-
+ 
 .progress-text {
   font-size: 10px;
   color: var(--text-dim);
   margin-top: 4px;
   min-height: 14px;
 }
-
+ 
 /* PLAYBACK INDICATOR */
 .now-playing {
   position: absolute;
@@ -470,28 +470,28 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   display: none;
 }
-
+ 
 .now-playing .wave-icon {
   display: flex; gap: 2px; align-items: flex-end; height: 14px;
 }
-
+ 
 .now-playing .wave-icon span {
   width: 2px;
   background: var(--accent);
   border-radius: 1px;
   animation: wave-bar 0.6s ease-in-out infinite alternate;
 }
-
+ 
 .now-playing .wave-icon span:nth-child(1) { height: 4px; animation-delay: 0s; }
 .now-playing .wave-icon span:nth-child(2) { height: 10px; animation-delay: 0.15s; }
 .now-playing .wave-icon span:nth-child(3) { height: 6px; animation-delay: 0.3s; }
 .now-playing .wave-icon span:nth-child(4) { height: 12px; animation-delay: 0.1s; }
 .now-playing .wave-icon span:nth-child(5) { height: 5px; animation-delay: 0.25s; }
-
+ 
 @keyframes wave-bar {
   to { height: 14px; }
 }
-
+ 
 /* LEGEND */
 .legend {
   position: absolute;
@@ -505,7 +505,7 @@ input[type="range"]::-webkit-slider-thumb {
   z-index: 30;
   display: none;
 }
-
+ 
 .legend-title {
   font-weight: 700;
   letter-spacing: 1px;
@@ -513,7 +513,7 @@ input[type="range"]::-webkit-slider-thumb {
   color: var(--text-dim);
   margin-bottom: 6px;
 }
-
+ 
 .legend-item {
   display: flex;
   align-items: center;
@@ -521,13 +521,13 @@ input[type="range"]::-webkit-slider-thumb {
   margin: 3px 0;
   color: var(--text-dim);
 }
-
+ 
 .legend-swatch {
   width: 10px; height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
-
+ 
 /* ZOOM CONTROLS */
 .zoom-controls {
   position: absolute;
@@ -538,7 +538,7 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 4px;
   z-index: 30;
 }
-
+ 
 .zoom-btn {
   width: 32px; height: 32px;
   background: var(--bg-surface);
@@ -552,7 +552,7 @@ input[type="range"]::-webkit-slider-thumb {
   justify-content: center;
 }
 .zoom-btn:hover { border-color: var(--text-muted); color: var(--text); }
-
+ 
 /* Loading overlay */
 .loading-overlay {
   position: absolute;
@@ -566,7 +566,7 @@ input[type="range"]::-webkit-slider-thumb {
   z-index: 60;
   display: none;
 }
-
+ 
 .spinner {
   width: 40px; height: 40px;
   border: 3px solid var(--border);
@@ -574,11 +574,11 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
-
+ 
 @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
 .loading-overlay p { font-size: 12px; color: var(--text-dim); }
-
+ 
 /* Responsive */
 @media (max-width: 800px) {
   .main-content { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
@@ -587,7 +587,7 @@ input[type="range"]::-webkit-slider-thumb {
 </style>
 </head>
 <body>
-
+ 
 <div class="app">
   <header>
     <h1><span class="icon"></span> Audio Cartographer</h1>
@@ -596,7 +596,7 @@ input[type="range"]::-webkit-slider-thumb {
       <span id="statusText">Waiting for audio</span>
     </div>
   </header>
-
+ 
   <div class="main-content">
     <aside class="sidebar">
       <!-- UPLOAD PANEL -->
@@ -620,7 +620,7 @@ input[type="range"]::-webkit-slider-thumb {
           <div class="file-list" id="fileList"></div>
         </div>
       </div>
-
+ 
       <!-- SEGMENTATION PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
@@ -628,7 +628,7 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         <div class="panel-body">
           <div class="range-field">
-            <label class="field-label">Onset Sensitivity</label>
+            <label class="field-label">Onset Sensitivity (← more ╌ fewer →)</label>
             <div class="range-row">
               <input type="range" id="onsetThreshold" min="0.01" max="0.5" step="0.01" value="0.1">
               <span class="range-value" id="onsetValue">0.10</span>
@@ -650,7 +650,7 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
       <!-- FEATURES PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
@@ -670,7 +670,7 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
       <!-- REDUCTION PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
@@ -698,7 +698,7 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
       <!-- RUN -->
       <div class="panel">
         <div class="panel-body" style="padding-top: 16px;">
@@ -710,35 +710,35 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
       </div>
     </aside>
-
+ 
     <div class="canvas-area" id="canvasArea">
       <canvas id="mapCanvas"></canvas>
-
+ 
       <div class="empty-state" id="emptyState">
         <div class="rings">
           <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
         </div>
         <p>Upload audio and run analysis to generate your map</p>
       </div>
-
+ 
       <div class="tooltip" id="tooltip">
         <div class="tt-title" id="ttTitle"></div>
         <div class="tt-row" id="ttInfo"></div>
       </div>
-
+ 
       <div class="now-playing" id="nowPlaying">
         <div class="wave-icon"><span></span><span></span><span></span><span></span><span></span></div>
         <span id="npText">Playing...</span>
       </div>
-
+ 
       <div class="legend" id="legend"></div>
-
+ 
       <div class="zoom-controls" id="zoomControls" style="display:none">
         <button class="zoom-btn" onclick="zoomMap(1.2)">+</button>
         <button class="zoom-btn" onclick="zoomMap(1/1.2)">−</button>
         <button class="zoom-btn" onclick="resetView()" style="font-size:11px;">⟲</button>
       </div>
-
+ 
       <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
         <p id="loadingText">Processing audio...</p>
@@ -746,7 +746,7 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
   </div>
 </div>
-
+ 
 <script>
 // ─── STATE ────────────────────────────────────────────────────
 const state = {
@@ -759,22 +759,22 @@ const state = {
   audioCtx: null,
   currentSource: null,
 };
-
+ 
 const canvas = document.getElementById('mapCanvas');
 const ctx = canvas.getContext('2d');
 let dpr = window.devicePixelRatio || 1;
-
+ 
 // ─── AUDIO CONTEXT ────────────────────────────────────────────
 function getAudioCtx() {
   if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return state.audioCtx;
 }
-
+ 
 // ─── FILE HANDLING ────────────────────────────────────────────
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const folderInput = document.getElementById('folderInput');
-
+ 
 dropZone.addEventListener('click', () => fileInput.click());
 dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
 dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
@@ -785,7 +785,7 @@ dropZone.addEventListener('drop', e => {
 });
 fileInput.addEventListener('change', e => addFiles(e.target.files));
 folderInput.addEventListener('change', e => addFiles(e.target.files));
-
+ 
 function addFiles(fileList) {
   const audioExts = ['.wav', '.mp3', '.ogg', '.flac', '.aac', '.m4a', '.webm'];
   for (const f of fileList) {
@@ -797,13 +797,13 @@ function addFiles(fileList) {
   renderFileList();
   document.getElementById('runBtn').disabled = state.files.length === 0;
 }
-
+ 
 function removeFile(idx) {
   state.files.splice(idx, 1);
   renderFileList();
   document.getElementById('runBtn').disabled = state.files.length === 0;
 }
-
+ 
 function renderFileList() {
   const el = document.getElementById('fileList');
   el.innerHTML = state.files.map((f, i) => `
@@ -814,13 +814,13 @@ function renderFileList() {
     </div>
   `).join('');
 }
-
+ 
 // ─── UI HELPERS ───────────────────────────────────────────────
 function togglePanel(header) {
   header.classList.toggle('collapsed');
   header.nextElementSibling.classList.toggle('collapsed');
 }
-
+ 
 document.getElementById('onsetThreshold').addEventListener('input', e => {
   document.getElementById('onsetValue').textContent = parseFloat(e.target.value).toFixed(2);
 });
@@ -836,24 +836,24 @@ document.getElementById('perplexity').addEventListener('input', e => {
 document.getElementById('neighbors').addEventListener('input', e => {
   document.getElementById('neighborsValue').textContent = e.target.value;
 });
-
+ 
 document.querySelectorAll('input[name="reduction"]').forEach(r => {
   r.addEventListener('change', () => {
     document.getElementById('perplexityField').style.display = r.value === 'tsne' ? '' : 'none';
     document.getElementById('neighborsField').style.display = r.value === 'umap' ? '' : 'none';
   });
 });
-
+ 
 function setProgress(pct, text) {
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = text || '';
 }
-
+ 
 function setStatus(text, active) {
   document.getElementById('statusText').textContent = text;
   document.getElementById('statusDot').classList.toggle('active', active);
 }
-
+ 
 // ─── CORE ANALYSIS PIPELINE ──────────────────────────────────
 async function runAnalysis() {
   if (state.files.length === 0) return;
@@ -861,7 +861,7 @@ async function runAnalysis() {
   btn.disabled = true;
   document.getElementById('loadingOverlay').style.display = 'flex';
   setStatus('Processing...', true);
-
+ 
   try {
     // 1. Decode audio files
     setProgress(5, 'Decoding audio files...');
@@ -874,14 +874,14 @@ async function runAnalysis() {
       }
       setProgress(5 + (i / state.files.length) * 15);
     }
-
+ 
     // 2. Onset detection & segmentation
     setProgress(20, 'Detecting onsets & segmenting...');
     document.getElementById('loadingText').textContent = 'Detecting onsets...';
     const threshold = parseFloat(document.getElementById('onsetThreshold').value);
     const minMs = parseInt(document.getElementById('minSegment').value);
     const maxMs = parseInt(document.getElementById('maxSegment').value);
-
+ 
     state.segments = [];
     for (let fi = 0; fi < state.files.length; fi++) {
       const buf = state.files[fi].buffer;
@@ -892,12 +892,12 @@ async function runAnalysis() {
       }
       setProgress(20 + (fi / state.files.length) * 20);
     }
-
+ 
     if (state.segments.length < 2) {
       alert('Not enough segments found. Try lowering onset sensitivity or adding more audio.');
       throw new Error('Too few segments');
     }
-
+ 
     // 3. Feature extraction
     setProgress(40, `Extracting features from ${state.segments.length} segments...`);
     document.getElementById('loadingText').textContent = `Extracting features (${state.segments.length} segments)...`;
@@ -906,7 +906,7 @@ async function runAnalysis() {
       alert('Please select at least one feature.');
       throw new Error('No features selected');
     }
-
+ 
     const featureMatrix = [];
     for (let i = 0; i < state.segments.length; i++) {
       const seg = state.segments[i];
@@ -915,16 +915,16 @@ async function runAnalysis() {
       state.segments[i].features = vec;
       if (i % 10 === 0) setProgress(40 + (i / state.segments.length) * 30);
     }
-
+ 
     // 4. Normalize features
     setProgress(70, 'Normalizing feature matrix...');
     const normalized = normalizeMatrix(featureMatrix);
-
+ 
     // 5. Dimensionality reduction
     const method = document.querySelector('input[name="reduction"]:checked').value;
     setProgress(75, `Running ${method.toUpperCase()}...`);
     document.getElementById('loadingText').textContent = `Running ${method.toUpperCase()}...`;
-
+ 
     let coords;
     if (method === 'pca') {
       coords = runPCA(normalized);
@@ -935,16 +935,16 @@ async function runAnalysis() {
       const nn = parseInt(document.getElementById('neighbors').value);
       coords = runUMAP(normalized, nn);
     }
-
+ 
     setProgress(95, 'Building map...');
-
+ 
     // 6. Build points
     state.points = coords.map((c, i) => ({
       x: c[0], y: c[1],
       segment: state.segments[i],
       fileIdx: state.segments[i].fileIdx,
     }));
-
+ 
     // Normalize coordinates to [-1, 1]
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     for (const p of state.points) {
@@ -959,7 +959,7 @@ async function runAnalysis() {
       p.x = ((p.x - minX) / rangeX) * 2 - 1;
       p.y = ((p.y - minY) / rangeY) * 2 - 1;
     }
-
+ 
     state.view = { x: 0, y: 0, scale: 1 };
     document.getElementById('emptyState').style.display = 'none';
     document.getElementById('zoomControls').style.display = '';
@@ -967,7 +967,7 @@ async function runAnalysis() {
     setProgress(100, `Done! ${state.segments.length} segments mapped.`);
     setStatus(`${state.segments.length} segments mapped`, true);
     drawMap();
-
+ 
   } catch (err) {
     console.error(err);
     setStatus('Error occurred', false);
@@ -976,35 +976,71 @@ async function runAnalysis() {
     btn.disabled = false;
   }
 }
-
+ 
 // ─── ONSET DETECTION ─────────────────────────────────────────
-function detectOnsets(audioBuffer, threshold, minGap) {
+function detectOnsets(audioBuffer, sensitivity, minGap) {
   const data = audioBuffer.getChannelData(0);
   const sr = audioBuffer.sampleRate;
   const hopSize = Math.round(sr * 0.01); // 10ms hop
   const frameSize = hopSize * 2;
   const onsets = [0]; // always start at 0
-
-  let prevEnergy = 0;
+ 
+  // 1. Compute energy for every frame
+  const energies = [];
   for (let i = 0; i < data.length - frameSize; i += hopSize) {
     let energy = 0;
     for (let j = 0; j < frameSize; j++) {
       energy += data[i + j] * data[i + j];
     }
-    energy /= frameSize;
-
-    const diff = energy - prevEnergy;
-    if (diff > threshold) {
-      const timeSec = i / sr;
+    energies.push(energy / frameSize);
+  }
+ 
+  if (energies.length < 3) return onsets;
+ 
+  // 2. Compute energy differences (onset detection function)
+  const diffs = [0];
+  for (let i = 1; i < energies.length; i++) {
+    diffs.push(Math.max(0, energies[i] - energies[i - 1])); // half-wave rectify
+  }
+ 
+  // 3. Compute adaptive threshold using a moving median + mean
+  const windowSize = Math.max(10, Math.round(0.2 * sr / hopSize)); // ~200ms window
+  const meanDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+  // sensitivity slider (0.01..0.5): low value = more sensitive = lower threshold
+  // We invert it: threshold multiplier = sensitivity mapped so 0.01 → 0.5x mean, 0.5 → 8x mean
+  const thresholdMult = 0.5 + (sensitivity / 0.5) * 7.5;
+ 
+  for (let i = 1; i < diffs.length; i++) {
+    // Local adaptive threshold: mean of surrounding window
+    const wStart = Math.max(0, i - windowSize);
+    const wEnd = Math.min(diffs.length, i + windowSize);
+    let localSum = 0;
+    for (let j = wStart; j < wEnd; j++) localSum += diffs[j];
+    const localMean = localSum / (wEnd - wStart);
+ 
+    const adaptiveThreshold = Math.max(localMean * thresholdMult, meanDiff * 0.1);
+ 
+    if (diffs[i] > adaptiveThreshold && diffs[i] > 0) {
+      const timeSec = (i * hopSize) / sr;
       if (timeSec - onsets[onsets.length - 1] > minGap) {
         onsets.push(timeSec);
       }
     }
-    prevEnergy = energy;
   }
+ 
+  // If we still got very few onsets, fall back to uniform segmentation
+  if (onsets.length < 3) {
+    onsets.length = 0;
+    const dur = audioBuffer.duration;
+    const segLen = Math.max(minGap, 0.25); // quarter-second segments
+    for (let t = 0; t < dur; t += segLen) {
+      onsets.push(t);
+    }
+  }
+ 
   return onsets;
 }
-
+ 
 function buildSegments(audioBuffer, onsets, minLen, maxLen) {
   const duration = audioBuffer.duration;
   const segments = [];
@@ -1017,7 +1053,7 @@ function buildSegments(audioBuffer, onsets, minLen, maxLen) {
   }
   return segments;
 }
-
+ 
 // ─── FEATURE EXTRACTION ──────────────────────────────────────
 function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
   const sr = audioBuffer.sampleRate;
@@ -1026,18 +1062,18 @@ function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
   const endIdx = Math.min(Math.floor(endSec * sr), data.length);
   const segment = data.slice(startIdx, endIdx);
   const N = segment.length;
-
+ 
   if (N < 2) return featureNames.map(() => 0);
-
+ 
   const vec = [];
-
+ 
   // Helper: compute FFT magnitude (simplified DFT for small segments, or approximation)
   let fftMag = null;
   const needSpectral = featureNames.some(f => ['centroid', 'bandwidth', 'rolloff', 'flatness', 'mfcc', 'chroma'].includes(f));
   if (needSpectral) {
     fftMag = computeFFTMagnitude(segment);
   }
-
+ 
   for (const fname of featureNames) {
     switch (fname) {
       case 'rms': {
@@ -1085,32 +1121,32 @@ function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
   }
   return vec;
 }
-
+ 
 function computeFFTMagnitude(signal) {
   // Use power-of-2 FFT size
   let fftSize = 1;
   while (fftSize < signal.length) fftSize *= 2;
   fftSize = Math.min(fftSize, 4096); // cap for performance
-
+ 
   const re = new Float32Array(fftSize);
   const im = new Float32Array(fftSize);
   const len = Math.min(signal.length, fftSize);
-
+ 
   // Apply Hann window
   for (let i = 0; i < len; i++) {
     const w = 0.5 * (1 - Math.cos(2 * Math.PI * i / (len - 1)));
     re[i] = signal[i] * w;
   }
-
+ 
   fftInPlace(re, im);
-
+ 
   const mag = new Float32Array(fftSize / 2);
   for (let i = 0; i < mag.length; i++) {
     mag[i] = Math.sqrt(re[i] * re[i] + im[i] * im[i]);
   }
   return mag;
 }
-
+ 
 // Cooley-Tukey FFT in-place
 function fftInPlace(re, im) {
   const n = re.length;
@@ -1146,7 +1182,7 @@ function fftInPlace(re, im) {
     }
   }
 }
-
+ 
 function spectralCentroid(mag, sr) {
   let num = 0, den = 0;
   for (let i = 0; i < mag.length; i++) {
@@ -1156,7 +1192,7 @@ function spectralCentroid(mag, sr) {
   }
   return den > 0 ? num / den : 0;
 }
-
+ 
 function spectralBandwidth(mag, sr, centroid) {
   let num = 0, den = 0;
   for (let i = 0; i < mag.length; i++) {
@@ -1166,7 +1202,7 @@ function spectralBandwidth(mag, sr, centroid) {
   }
   return den > 0 ? Math.sqrt(num / den) : 0;
 }
-
+ 
 function spectralRolloff(mag, sr, pct) {
   let total = 0;
   for (let i = 0; i < mag.length; i++) total += mag[i];
@@ -1178,7 +1214,7 @@ function spectralRolloff(mag, sr, pct) {
   }
   return sr / 2;
 }
-
+ 
 function spectralFlatness(mag) {
   let logSum = 0, linSum = 0, count = 0;
   for (let i = 1; i < mag.length; i++) {
@@ -1191,7 +1227,7 @@ function spectralFlatness(mag) {
   if (count === 0 || linSum === 0) return 0;
   return Math.exp(logSum / count) / (linSum / count);
 }
-
+ 
 function computeMFCC(mag, sr, numCoeffs) {
   const numFilters = 26;
   const minMel = hzToMel(0);
@@ -1200,10 +1236,10 @@ function computeMFCC(mag, sr, numCoeffs) {
   for (let i = 0; i <= numFilters + 1; i++) {
     melPoints.push(melToHz(minMel + (maxMel - minMel) * i / (numFilters + 1)));
   }
-
+ 
   const bins = melPoints.map(f => Math.floor((f / (sr / 2)) * mag.length));
   const filterEnergies = [];
-
+ 
   for (let m = 0; m < numFilters; m++) {
     let energy = 0;
     for (let k = bins[m]; k < bins[m + 2] && k < mag.length; k++) {
@@ -1217,7 +1253,7 @@ function computeMFCC(mag, sr, numCoeffs) {
     }
     filterEnergies.push(energy > 0 ? Math.log(energy) : -10);
   }
-
+ 
   // DCT-II
   const mfccs = [];
   for (let i = 0; i < numCoeffs; i++) {
@@ -1229,10 +1265,10 @@ function computeMFCC(mag, sr, numCoeffs) {
   }
   return mfccs;
 }
-
+ 
 function hzToMel(hz) { return 2595 * Math.log10(1 + hz / 700); }
 function melToHz(mel) { return 700 * (Math.pow(10, mel / 2595) - 1); }
-
+ 
 function computeChroma(mag, sr) {
   const chroma = new Float32Array(12);
   for (let i = 1; i < mag.length; i++) {
@@ -1248,14 +1284,14 @@ function computeChroma(mag, sr) {
   if (maxC > 0) for (let i = 0; i < 12; i++) chroma[i] /= maxC;
   return Array.from(chroma);
 }
-
+ 
 // ─── NORMALIZE MATRIX ────────────────────────────────────────
 function normalizeMatrix(matrix) {
   const dim = matrix[0].length;
   const means = new Float32Array(dim);
   const stds = new Float32Array(dim);
   const n = matrix.length;
-
+ 
   for (let j = 0; j < dim; j++) {
     let sum = 0;
     for (let i = 0; i < n; i++) sum += matrix[i][j];
@@ -1266,15 +1302,15 @@ function normalizeMatrix(matrix) {
     for (let i = 0; i < n; i++) sum += (matrix[i][j] - means[j]) ** 2;
     stds[j] = Math.sqrt(sum / n) || 1;
   }
-
+ 
   return matrix.map(row => row.map((v, j) => (v - means[j]) / stds[j]));
 }
-
+ 
 // ─── PCA ─────────────────────────────────────────────────────
 function runPCA(data) {
   const n = data.length;
   const dim = data[0].length;
-
+ 
   // Covariance matrix
   const cov = [];
   for (let i = 0; i < dim; i++) {
@@ -1286,13 +1322,13 @@ function runPCA(data) {
       if (j !== i) cov[j][i] = cov[i][j];
     }
   }
-
+ 
   // Power iteration for top 2 eigenvectors
   const eigenvectors = [];
   for (let ev = 0; ev < 2; ev++) {
     let vec = new Float32Array(dim);
     for (let i = 0; i < dim; i++) vec[i] = Math.random() - 0.5;
-
+ 
     for (let iter = 0; iter < 100; iter++) {
       const newVec = new Float32Array(dim);
       for (let i = 0; i < dim; i++) {
@@ -1313,7 +1349,7 @@ function runPCA(data) {
     }
     eigenvectors.push(vec);
   }
-
+ 
   // Project
   return data.map(row => {
     return eigenvectors.map(ev => {
@@ -1323,14 +1359,14 @@ function runPCA(data) {
     });
   });
 }
-
+ 
 // ─── t-SNE ───────────────────────────────────────────────────
 async function runTSNE(data, perplexity, onProgress) {
   const n = data.length;
   const dim = data[0].length;
   perplexity = Math.min(perplexity, Math.floor((n - 1) / 3));
   if (perplexity < 1) perplexity = 1;
-
+ 
   // Pairwise distances
   const dist = new Float32Array(n * n);
   for (let i = 0; i < n; i++) {
@@ -1341,7 +1377,7 @@ async function runTSNE(data, perplexity, onProgress) {
       dist[j * n + i] = d;
     }
   }
-
+ 
   // Compute P
   const P = new Float32Array(n * n);
   for (let i = 0; i < n; i++) {
@@ -1368,7 +1404,7 @@ async function runTSNE(data, perplexity, onProgress) {
     for (let j = 0; j < n; j++) sumP += P[i * n + j];
     for (let j = 0; j < n; j++) P[i * n + j] /= sumP;
   }
-
+ 
   // Symmetrize
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
@@ -1377,21 +1413,21 @@ async function runTSNE(data, perplexity, onProgress) {
       P[j * n + i] = avg;
     }
   }
-
+ 
   // Initialize Y randomly
   const Y = [];
   for (let i = 0; i < n; i++) Y.push([Math.random() * 0.01, Math.random() * 0.01]);
-
+ 
   const gains = [];
   const veloc = [];
   for (let i = 0; i < n; i++) {
     gains.push([1, 1]);
     veloc.push([0, 0]);
   }
-
+ 
   const lr = 100;
   const iters = 300;
-
+ 
   for (let t = 0; t < iters; t++) {
     // Compute Q
     const qNum = new Float32Array(n * n);
@@ -1405,7 +1441,7 @@ async function runTSNE(data, perplexity, onProgress) {
         qSum += 2 * v;
       }
     }
-
+ 
     // Gradient
     const exaggeration = t < 100 ? 4 : 1;
     for (let i = 0; i < n; i++) {
@@ -1418,7 +1454,7 @@ async function runTSNE(data, perplexity, onProgress) {
         gx += mult * (Y[i][0] - Y[j][0]);
         gy += mult * (Y[i][1] - Y[j][1]);
       }
-
+ 
       // Update with momentum
       for (let d = 0; d < 2; d++) {
         const g = d === 0 ? gx : gy;
@@ -1429,28 +1465,28 @@ async function runTSNE(data, perplexity, onProgress) {
         Y[i][d] += veloc[i][d];
       }
     }
-
+ 
     // Center
     let cx = 0, cy = 0;
     for (let i = 0; i < n; i++) { cx += Y[i][0]; cy += Y[i][1]; }
     cx /= n; cy /= n;
     for (let i = 0; i < n; i++) { Y[i][0] -= cx; Y[i][1] -= cy; }
-
+ 
     if (t % 30 === 0) {
       onProgress(t / iters);
       await new Promise(r => setTimeout(r, 0)); // yield
     }
   }
-
+ 
   return Y;
 }
-
+ 
 // ─── UMAP (simplified) ──────────────────────────────────────
 function runUMAP(data, nNeighbors) {
   const n = data.length;
   const dim = data[0].length;
   nNeighbors = Math.min(nNeighbors, n - 1);
-
+ 
   // Pairwise distances
   const dists = [];
   for (let i = 0; i < n; i++) {
@@ -1463,7 +1499,7 @@ function runUMAP(data, nNeighbors) {
     }
     dists.push(row);
   }
-
+ 
   // k-nearest neighbors graph
   const knn = [];
   for (let i = 0; i < n; i++) {
@@ -1471,7 +1507,7 @@ function runUMAP(data, nNeighbors) {
     indices.sort((a, b) => dists[i][a] - dists[i][b]);
     knn.push(indices.slice(0, nNeighbors));
   }
-
+ 
   // Compute fuzzy simplicial set (simplified)
   const graph = new Float32Array(n * n);
   for (let i = 0; i < n; i++) {
@@ -1491,7 +1527,7 @@ function runUMAP(data, nNeighbors) {
       graph[i * n + j] = Math.exp(-Math.max(0, dists[i][j] - rho) / sigma);
     }
   }
-
+ 
   // Symmetrize
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
@@ -1500,14 +1536,14 @@ function runUMAP(data, nNeighbors) {
       graph[j * n + i] = v;
     }
   }
-
+ 
   // Initialize with spectral-like init (just use PCA for stability)
   const Y = runPCA(data).map(c => [c[0] * 0.01, c[1] * 0.01]);
-
+ 
   // SGD optimization
   const epochs = 200;
   const aParam = 1.0, bParam = 1.0;
-
+ 
   for (let ep = 0; ep < epochs; ep++) {
     const lr = 1.0 * (1 - ep / epochs);
     for (let i = 0; i < n; i++) {
@@ -1523,7 +1559,7 @@ function runUMAP(data, nNeighbors) {
         Y[j][0] -= lr * w * grad * dx;
         Y[j][1] -= lr * w * grad * dy;
       }
-
+ 
       // Repulsion from random negative sample
       const neg = Math.floor(Math.random() * n);
       if (neg !== i) {
@@ -1536,16 +1572,16 @@ function runUMAP(data, nNeighbors) {
       }
     }
   }
-
+ 
   return Y;
 }
-
+ 
 // ─── LEGEND ──────────────────────────────────────────────────
 const FILE_COLORS = [
   '#ff6b4a', '#4af0c8', '#7b6bff', '#ffcb4a', '#ff4aaa',
   '#4ac8ff', '#8aff4a', '#ff8a4a', '#c84aff', '#4aff8a'
 ];
-
+ 
 function buildLegend() {
   const legend = document.getElementById('legend');
   if (state.files.length <= 1) {
@@ -1560,7 +1596,7 @@ function buildLegend() {
   });
   legend.innerHTML = html;
 }
-
+ 
 // ─── MAP RENDERING ───────────────────────────────────────────
 function resizeCanvas() {
   const area = document.getElementById('canvasArea');
@@ -1571,10 +1607,10 @@ function resizeCanvas() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   if (state.points.length) drawMap();
 }
-
+ 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
-
+ 
 function worldToScreen(wx, wy) {
   const area = document.getElementById('canvasArea');
   const w = area.clientWidth;
@@ -1584,7 +1620,7 @@ function worldToScreen(wx, wy) {
   const sy = (wy - state.view.y) * state.view.scale * ((h - padding * 2) / 2) + h / 2;
   return [sx, sy];
 }
-
+ 
 function screenToWorld(sx, sy) {
   const area = document.getElementById('canvasArea');
   const w = area.clientWidth;
@@ -1594,13 +1630,13 @@ function screenToWorld(sx, sy) {
   const wy = (sy - h / 2) / (state.view.scale * ((h - padding * 2) / 2)) + state.view.y;
   return [wx, wy];
 }
-
+ 
 function drawMap() {
   const area = document.getElementById('canvasArea');
   const w = area.clientWidth;
   const h = area.clientHeight;
   ctx.clearRect(0, 0, w, h);
-
+ 
   // Grid
   ctx.strokeStyle = 'rgba(255,255,255,0.03)';
   ctx.lineWidth = 0.5;
@@ -1616,19 +1652,19 @@ function drawMap() {
       ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
     }
   }
-
+ 
   // Points
   const multiFile = state.files.length > 1;
   for (let i = 0; i < state.points.length; i++) {
     const p = state.points[i];
     const [sx, sy] = worldToScreen(p.x, p.y);
     if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
-
+ 
     const isHovered = i === state.hoveredIdx;
     const isPlaying = i === state.playingIdx;
     const baseColor = multiFile ? FILE_COLORS[p.fileIdx % FILE_COLORS.length] : '#ff6b4a';
     const radius = isHovered ? 7 : isPlaying ? 8 : 4;
-
+ 
     if (isPlaying) {
       ctx.beginPath();
       ctx.arc(sx, sy, 16, 0, Math.PI * 2);
@@ -1636,12 +1672,12 @@ function drawMap() {
       if (!ctx.fillStyle.includes('rgba')) ctx.fillStyle = hexToRgba(baseColor, 0.15);
       ctx.fill();
     }
-
+ 
     ctx.beginPath();
     ctx.arc(sx, sy, radius, 0, Math.PI * 2);
     ctx.fillStyle = isHovered || isPlaying ? baseColor : hexToRgba(baseColor, 0.7);
     ctx.fill();
-
+ 
     if (isHovered) {
       ctx.strokeStyle = 'rgba(255,255,255,0.5)';
       ctx.lineWidth = 1.5;
@@ -1649,25 +1685,25 @@ function drawMap() {
     }
   }
 }
-
+ 
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r},${g},${b},${alpha})`;
 }
-
+ 
 // ─── INTERACTION ─────────────────────────────────────────────
 let isDragging = false;
 let dragStart = null;
 let viewStart = null;
-
+ 
 canvas.addEventListener('mousedown', e => {
   isDragging = true;
   dragStart = { x: e.offsetX, y: e.offsetY };
   viewStart = { x: state.view.x, y: state.view.y };
 });
-
+ 
 window.addEventListener('mousemove', e => {
   if (isDragging && dragStart) {
     const rect = canvas.getBoundingClientRect();
@@ -1681,12 +1717,12 @@ window.addEventListener('mousemove', e => {
     drawMap();
     return;
   }
-
+ 
   if (!state.points.length) return;
   const rect = canvas.getBoundingClientRect();
   const mx = e.clientX - rect.left;
   const my = e.clientY - rect.top;
-
+ 
   let closest = -1;
   let closestDist = 20;
   for (let i = 0; i < state.points.length; i++) {
@@ -1694,12 +1730,12 @@ window.addEventListener('mousemove', e => {
     const d = Math.sqrt((sx - mx) ** 2 + (sy - my) ** 2);
     if (d < closestDist) { closestDist = d; closest = i; }
   }
-
+ 
   if (closest !== state.hoveredIdx) {
     state.hoveredIdx = closest;
     drawMap();
   }
-
+ 
   const tooltip = document.getElementById('tooltip');
   if (closest >= 0) {
     canvas.style.cursor = 'pointer';
@@ -1716,9 +1752,9 @@ window.addEventListener('mousemove', e => {
     tooltip.style.display = 'none';
   }
 });
-
+ 
 window.addEventListener('mouseup', () => { isDragging = false; });
-
+ 
 canvas.addEventListener('click', e => {
   if (isDragging && dragStart) {
     const dx = Math.abs(e.offsetX - dragStart.x);
@@ -1729,51 +1765,51 @@ canvas.addEventListener('click', e => {
     playSegment(state.hoveredIdx);
   }
 });
-
+ 
 canvas.addEventListener('wheel', e => {
   e.preventDefault();
   const factor = e.deltaY > 0 ? 0.9 : 1.1;
   zoomMap(factor);
 }, { passive: false });
-
+ 
 function zoomMap(factor) {
   state.view.scale *= factor;
   state.view.scale = Math.max(0.2, Math.min(state.view.scale, 20));
   drawMap();
 }
-
+ 
 function resetView() {
   state.view = { x: 0, y: 0, scale: 1 };
   drawMap();
 }
-
+ 
 // ─── PLAYBACK ────────────────────────────────────────────────
 function playSegment(idx) {
   const actx = getAudioCtx();
   if (actx.state === 'suspended') actx.resume();
-
+ 
   if (state.currentSource) {
     try { state.currentSource.stop(); } catch (e) {}
   }
-
+ 
   const p = state.points[idx];
   const seg = p.segment;
   const source = actx.createBufferSource();
   source.buffer = seg.audioBuffer;
   source.connect(actx.destination);
-
+ 
   const duration = seg.end - seg.start;
   source.start(0, seg.start, duration);
   state.currentSource = source;
   state.playingIdx = idx;
-
+ 
   const np = document.getElementById('nowPlaying');
   np.style.display = 'flex';
   document.getElementById('npText').textContent =
     `${state.files[p.fileIdx].name} — ${seg.start.toFixed(2)}s`;
-
+ 
   drawMap();
-
+ 
   source.onended = () => {
     if (state.playingIdx === idx) {
       state.playingIdx = -1;
@@ -1781,7 +1817,7 @@ function playSegment(idx) {
       drawMap();
     }
   };
-
+ 
   setTimeout(() => {
     if (state.playingIdx === idx) {
       state.playingIdx = -1;
