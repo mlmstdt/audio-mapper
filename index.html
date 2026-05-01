@@ -866,7 +866,7 @@ input[type="range"]::-webkit-slider-thumb {
       <span id="statusText">Waiting for audio</span>
     </div>
   </header>
- 
+
   <div class="main-content">
     <aside class="sidebar">
       <!-- UPLOAD PANEL -->
@@ -874,19 +874,52 @@ input[type="range"]::-webkit-slider-thumb {
         <div class="panel-header" onclick="togglePanel(this)">
           Input <span class="chevron">▾</span>
         </div>
+
         <div class="panel-body">
           <div class="drop-zone" id="dropZone">
             <div class="label">
               Drop audio files here or <strong>click to browse</strong><br>
-              <span style="font-size:10px; color: var(--text-muted)">.wav .mp3 .ogg .flac · files or folders</span>
+              <span style="font-size:10px; color: var(--text-muted)">
+                .wav .mp3 .ogg .flac .m4a .aac .webm · files or folders
+              </span>
             </div>
-            <input type="file" id="fileInput" multiple accept="audio/*" style="display:none">
-            <input type="file" id="folderInput" webkitdirectory style="display:none">
+
+            <input
+              type="file"
+              id="fileInput"
+              multiple
+              accept=".wav,.mp3,.ogg,.flac,.m4a,.aac,.webm,audio/wav,audio/mpeg,audio/ogg,audio/flac,audio/mp4,audio/x-m4a,audio/aac,audio/webm"
+              style="display:none"
+            >
+
+            <input
+              type="file"
+              id="folderInput"
+              webkitdirectory
+              multiple
+              accept=".wav,.mp3,.ogg,.flac,.m4a,.aac,.webm,audio/wav,audio/mpeg,audio/ogg,audio/flac,audio/mp4,audio/x-m4a,audio/aac,audio/webm"
+              style="display:none"
+            >
           </div>
+
           <div style="display:flex; gap:8px;">
-            <button class="btn btn-secondary" style="flex:1; font-size:10px;" onclick="document.getElementById('fileInput').click()">Files</button>
-            <button class="btn btn-secondary" style="flex:1; font-size:10px;" onclick="document.getElementById('folderInput').click()">Folder</button>
+            <button
+              class="btn btn-secondary"
+              style="flex:1; font-size:10px;"
+              onclick="document.getElementById('fileInput').click()"
+            >
+              Files
+            </button>
+
+            <button
+              class="btn btn-secondary"
+              style="flex:1; font-size:10px;"
+              onclick="document.getElementById('folderInput').click()"
+            >
+              Folder
+            </button>
           </div>
+
           <div class="file-list" id="fileList"></div>
         </div>
       </div>
