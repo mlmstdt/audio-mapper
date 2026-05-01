@@ -883,21 +883,19 @@ input[type="range"]::-webkit-slider-thumb {
                 .wav .mp3 .ogg .flac .m4a .aac .webm · files or folders
               </span>
             </div>
-
             <input
               type="file"
               id="fileInput"
               multiple
-              accept=".wav,.mp3,.ogg,.flac,.m4a,.aac,.webm,audio/wav,audio/mpeg,audio/ogg,audio/flac,audio/mp4,audio/x-m4a,audio/aac,audio/webm"
+              accept="audio/*"
               style="display:none"
             >
-
             <input
               type="file"
               id="folderInput"
               webkitdirectory
               multiple
-              accept=".wav,.mp3,.ogg,.flac,.m4a,.aac,.webm,audio/wav,audio/mpeg,audio/ogg,audio/flac,audio/mp4,audio/x-m4a,audio/aac,audio/webm"
+              accept="audio/*"
               style="display:none"
             >
           </div>
