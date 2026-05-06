@@ -1109,6 +1109,21 @@ function getAudioCtx() {
   if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return state.audioCtx;
 }
+async function unlockAudio() {
+  const actx = getAudioCtx();
+
+  if (actx.state === 'suspended') {
+    try {
+      await actx.resume();
+    } catch (err) {
+      console.warn('Audio unlock failed:', err);
+    }
+  }
+}
+
+['touchstart', 'pointerdown', 'click'].forEach(eventName => {
+  document.addEventListener(eventName, unlockAudio, { once: true, passive: true });
+});
  
 // ─── FILE HANDLING ────────────────────────────────────────────
 const dropZone = document.getElementById('dropZone');
@@ -2304,10 +2319,14 @@ function resetView() {
  
 // ─── PLAYBACK ────────────────────────────────────────────────
 state.loopInterval = null;
- 
-function playSegment(idx) {
+
+  
+async function playSegment(idx) {
   const actx = getAudioCtx();
-  if (actx.state === 'suspended') actx.resume();
+
+  if (actx.state === 'suspended') {
+    await actx.resume();
+  }
  
   if (state.playingIdx === idx) {
     stopPlayback();
@@ -2394,7 +2413,6 @@ function showInfoPanel(idx, screenX, screenY) {
   panel.style.top = py + 'px';
   panel.style.display = 'block';
  
-  stopPlayback();
   updatePlayButton();
 }
  
@@ -2410,12 +2428,13 @@ function formatTime(sec) {
   return m > 0 ? `${m}:${s.toFixed(2).padStart(5, '0')}` : `${s.toFixed(2)}s`;
 }
  
-function playFromInfoPanel() {
+async function playFromInfoPanel() {
   if (state.selectedIdx < 0) return;
+
   if (state.playingIdx === state.selectedIdx) {
     stopPlayback();
   } else {
-    playSegment(state.selectedIdx);
+    await playSegment(state.selectedIdx);
   }
 }
  
