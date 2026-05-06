@@ -24,20 +24,21 @@
   --font-mono: 'JetBrains Mono', monospace;
   --font-serif: 'Instrument Serif', serif;
 }
-
+ 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-mono);
+ 
+html, body { 
+  height: 100%; 
+  background: var(--bg); 
+  color: var(--text); 
+  font-family: var(--font-mono); 
   font-size: 13px;
   overflow: hidden;
 }
-
+ 
+/* LAYOUT */
 .app { display: grid; grid-template-rows: auto 1fr; height: 100vh; }
-
+ 
 header {
   display: flex;
   align-items: center;
@@ -47,26 +48,22 @@ header {
   background: var(--bg-elevated);
   z-index: 100;
 }
-
+ 
 header h1 {
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 10px;
 }
-
+ 
 header h1 span.icon {
   display: inline-block;
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   background: var(--accent);
   border-radius: 50%;
   position: relative;
 }
-
 header h1 span.icon::after {
   content: '';
   position: absolute;
@@ -74,46 +71,42 @@ header h1 span.icon::after {
   border: 2px solid var(--bg);
   border-radius: 50%;
 }
-
+ 
 .status-bar {
   font-size: 11px;
   color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
 }
-
+ 
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--text-muted);
   transition: background 0.3s;
 }
-
-.status-dot.active {
-  background: var(--accent2);
-  box-shadow: 0 0 8px var(--accent2-glow);
-}
-
+.status-dot.active { background: var(--accent2); box-shadow: 0 0 8px var(--accent2-glow); }
+ 
 .main-content {
   display: grid;
   grid-template-columns: 320px 1fr;
   overflow: hidden;
 }
-
+ 
+/* SIDEBAR */
 .sidebar {
   border-right: 1px solid var(--border);
   background: var(--bg-elevated);
   overflow-y: auto;
   padding: 0;
 }
-
+ 
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-.panel { border-bottom: 1px solid var(--border); }
-
+ 
+.panel {
+  border-bottom: 1px solid var(--border);
+}
+ 
 .panel-header {
   padding: 14px 20px;
   font-size: 10px;
@@ -127,20 +120,21 @@ header h1 span.icon::after {
   cursor: pointer;
   user-select: none;
 }
-
+ 
 .panel-header:hover { color: var(--text); }
 .panel-header .chevron { transition: transform 0.2s; font-size: 14px; }
 .panel-header.collapsed .chevron { transform: rotate(-90deg); }
-
+ 
 .panel-body {
   padding: 0 20px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
+ 
 .panel-body.collapsed { display: none; }
-
+ 
+/* DROP ZONE */
 .drop-zone {
   border: 1.5px dashed var(--border);
   border-radius: var(--radius);
@@ -150,61 +144,60 @@ header h1 span.icon::after {
   transition: all 0.2s;
   position: relative;
 }
-
+ 
 .drop-zone:hover, .drop-zone.dragover {
   border-color: var(--accent);
   background: rgba(255, 107, 74, 0.04);
 }
-
+ 
 .drop-zone .label {
   font-size: 12px;
   color: var(--text-dim);
   line-height: 1.6;
 }
-
+ 
 .drop-zone .label strong {
   color: var(--accent);
   font-weight: 500;
 }
-
+ 
 .file-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-height: 140px;
+  max-height: 120px;
   overflow-y: auto;
 }
-
+ 
 .file-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 8px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 6px 10px;
   background: var(--bg-surface);
   border-radius: 4px;
   font-size: 11px;
 }
-
+ 
 .file-item .name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 180px;
 }
-
+ 
 .file-item .meta { color: var(--text-muted); font-size: 10px; }
-
+ 
 .file-item .remove {
-  background: none;
-  border: none;
+  background: none; border: none;
   color: var(--text-muted);
   cursor: pointer;
   font-size: 14px;
   padding: 0 2px;
 }
-
 .file-item .remove:hover { color: var(--danger); }
-
+ 
+/* FORM ELEMENTS */
 label.field-label {
   font-size: 10px;
   font-weight: 500;
@@ -214,14 +207,10 @@ label.field-label {
   display: block;
   margin-bottom: 6px;
 }
-
-.checkbox-group, .radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.checkbox-item, .radio-item {
+ 
+.checkbox-group { display: flex; flex-direction: column; gap: 6px; }
+ 
+.checkbox-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -232,27 +221,24 @@ label.field-label {
   transition: background 0.15s;
   font-size: 12px;
 }
-
-.checkbox-item:hover, .radio-item:hover { background: #1e1e2c; }
-
-.checkbox-item input[type="checkbox"], .radio-item input[type="radio"] {
+ 
+.checkbox-item:hover { background: #1e1e2c; }
+ 
+.checkbox-item input[type="checkbox"] {
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   border: 1.5px solid var(--border);
+  border-radius: 3px;
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
 }
-
-.checkbox-item input[type="checkbox"] { border-radius: 3px; }
-.radio-item input[type="radio"] { border-radius: 50%; }
-
+ 
 .checkbox-item input[type="checkbox"]:checked {
   background: var(--accent);
   border-color: var(--accent);
 }
-
+ 
 .checkbox-item input[type="checkbox"]:checked::after {
   content: '✓';
   position: absolute;
@@ -264,32 +250,58 @@ label.field-label {
   color: white;
   font-weight: bold;
 }
-
-.radio-item input[type="radio"]:checked { border-color: var(--accent2); }
-
+ 
+.radio-group { display: flex; flex-direction: column; gap: 6px; }
+ 
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: var(--bg-surface);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 12px;
+}
+ 
+.radio-item:hover { background: #1e1e2c; }
+ 
+.radio-item input[type="radio"] {
+  appearance: none;
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+ 
+.radio-item input[type="radio"]:checked {
+  border-color: var(--accent2);
+}
+ 
 .radio-item input[type="radio"]:checked::after {
   content: '';
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 6px;
-  height: 6px;
+  top: 3px; left: 3px;
+  width: 6px; height: 6px;
   background: var(--accent2);
   border-radius: 50%;
 }
-
+ 
 .range-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
+ 
 .range-row {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
+ 
 input[type="range"] {
   flex: 1;
   appearance: none;
@@ -298,23 +310,23 @@ input[type="range"] {
   border-radius: 2px;
   outline: none;
 }
-
+ 
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   background: var(--accent);
   border-radius: 50%;
   cursor: pointer;
 }
-
+ 
 .range-value {
   font-size: 11px;
   color: var(--accent);
-  min-width: 44px;
+  min-width: 36px;
   text-align: right;
 }
-
+ 
+/* BUTTONS */
 .btn {
   padding: 10px 20px;
   border: none;
@@ -327,37 +339,36 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   transition: all 0.2s;
 }
-
+ 
 .btn-primary {
   background: var(--accent);
   color: white;
   box-shadow: 0 2px 12px var(--accent-glow);
 }
-
 .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-glow); }
 .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-
+ 
 .btn-secondary {
   background: var(--bg-surface);
   color: var(--text-dim);
   border: 1px solid var(--border);
 }
-
 .btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
-.btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
-
+ 
+/* CANVAS AREA */
 .canvas-area {
   position: relative;
   overflow: hidden;
   background: var(--bg);
 }
-
+ 
 .canvas-area canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
-
+ 
+/* EMPTY STATE */
 .empty-state {
   position: absolute;
   inset: 0;
@@ -368,38 +379,38 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 16px;
   pointer-events: none;
 }
-
+ 
 .empty-state .rings {
-  width: 120px;
-  height: 120px;
+  width: 120px; height: 120px;
   position: relative;
   opacity: 0.15;
 }
-
+ 
 .empty-state .rings .ring {
   position: absolute;
   border: 1.5px solid var(--text-dim);
   border-radius: 50%;
   animation: pulse-ring 3s ease-in-out infinite;
 }
-
+ 
 .empty-state .rings .ring:nth-child(1) { inset: 0; animation-delay: 0s; }
 .empty-state .rings .ring:nth-child(2) { inset: 15px; animation-delay: 0.5s; }
 .empty-state .rings .ring:nth-child(3) { inset: 30px; animation-delay: 1s; }
 .empty-state .rings .ring:nth-child(4) { inset: 45px; animation-delay: 1.5s; }
-
+ 
 @keyframes pulse-ring {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
 }
-
+ 
 .empty-state p {
   font-size: 13px;
   color: var(--text-muted);
   font-style: italic;
   font-family: var(--font-serif);
 }
-
+ 
+/* TOOLTIP */
 .tooltip {
   position: absolute;
   background: var(--bg-surface);
@@ -410,13 +421,14 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 11px;
   z-index: 50;
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  max-width: 240px;
+  max-width: 220px;
   display: none;
 }
-
+ 
 .tooltip .tt-title { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
 .tooltip .tt-row { color: var(--text-dim); margin: 2px 0; }
-
+ 
+/* PROGRESS */
 .progress-bar {
   width: 100%;
   height: 3px;
@@ -424,7 +436,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 2px;
   overflow: hidden;
 }
-
+ 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -432,14 +444,15 @@ input[type="range"]::-webkit-slider-thumb {
   transition: width 0.3s;
   width: 0%;
 }
-
+ 
 .progress-text {
   font-size: 10px;
   color: var(--text-dim);
   margin-top: 4px;
   min-height: 14px;
 }
-
+ 
+/* PLAYBACK INDICATOR */
 .now-playing {
   position: absolute;
   bottom: 20px;
@@ -450,35 +463,36 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 30px;
   padding: 8px 20px;
   font-size: 11px;
+  display: flex;
   align-items: center;
   gap: 10px;
   z-index: 40;
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   display: none;
 }
-
+ 
 .now-playing .wave-icon {
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-  height: 14px;
+  display: flex; gap: 2px; align-items: flex-end; height: 14px;
 }
-
+ 
 .now-playing .wave-icon span {
   width: 2px;
   background: var(--accent);
   border-radius: 1px;
   animation: wave-bar 0.6s ease-in-out infinite alternate;
 }
-
+ 
 .now-playing .wave-icon span:nth-child(1) { height: 4px; animation-delay: 0s; }
 .now-playing .wave-icon span:nth-child(2) { height: 10px; animation-delay: 0.15s; }
 .now-playing .wave-icon span:nth-child(3) { height: 6px; animation-delay: 0.3s; }
 .now-playing .wave-icon span:nth-child(4) { height: 12px; animation-delay: 0.1s; }
 .now-playing .wave-icon span:nth-child(5) { height: 5px; animation-delay: 0.25s; }
-
-@keyframes wave-bar { to { height: 14px; } }
-
+ 
+@keyframes wave-bar {
+  to { height: 14px; }
+}
+ 
+/* LEGEND */
 .legend {
   position: absolute;
   top: 16px;
@@ -490,11 +504,8 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 10px;
   z-index: 30;
   display: none;
-  max-width: 260px;
-  max-height: 240px;
-  overflow: auto;
 }
-
+ 
 .legend-title {
   font-weight: 700;
   letter-spacing: 1px;
@@ -502,23 +513,22 @@ input[type="range"]::-webkit-slider-thumb {
   color: var(--text-dim);
   margin-bottom: 6px;
 }
-
+ 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 6px;
   margin: 3px 0;
   color: var(--text-dim);
-  white-space: nowrap;
 }
-
+ 
 .legend-swatch {
-  width: 10px;
-  height: 10px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
-
+ 
+/* ZOOM CONTROLS */
 .zoom-controls {
   position: absolute;
   bottom: 20px;
@@ -528,10 +538,9 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 4px;
   z-index: 30;
 }
-
+ 
 .zoom-btn {
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -542,9 +551,161 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: center;
   justify-content: center;
 }
-
 .zoom-btn:hover { border-color: var(--text-muted); color: var(--text); }
-
+ 
+/* MORPH TOOLBAR */
+.morph-toolbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 6px;
+  z-index: 30;
+  display: none;
+}
+.morph-toolbar.visible { display: flex; }
+ 
+.morph-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.morph-btn:hover { border-color: var(--accent2); color: var(--text); }
+.morph-btn.active {
+  background: var(--accent2);
+  color: var(--bg);
+  border-color: var(--accent2);
+}
+ 
+/* MORPH PANEL */
+.morph-panel {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  z-index: 40;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  min-width: 320px;
+  display: none;
+}
+.morph-panel.visible { display: block; }
+ 
+.morph-panel .mp-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+ 
+.morph-panel .mp-endpoints {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.morph-panel .mp-endpoint {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--bg-surface);
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.morph-panel .mp-arrow { color: var(--accent2); font-size: 14px; }
+ 
+.morph-panel .mp-slider {
+  margin-bottom: 12px;
+}
+ 
+.morph-panel .mp-actions {
+  display: flex;
+  gap: 8px;
+}
+ 
+.morph-panel .mp-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.morph-panel .mp-btn:hover { border-color: var(--accent2); color: var(--text); }
+.morph-panel .mp-btn.primary {
+  background: var(--accent2);
+  color: var(--bg);
+  border-color: var(--accent2);
+}
+.morph-panel .mp-btn.primary:hover {
+  background: var(--accent2);
+  filter: brightness(1.1);
+}
+ 
+.morph-panel .mp-status {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  text-align: center;
+  min-height: 14px;
+}
+ 
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 60;
+  display: none;
+}
+ 
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+ 
+@keyframes spin { to { transform: rotate(360deg); } }
+ 
+.loading-overlay p { font-size: 12px; color: var(--text-dim); }
+ 
+/* Responsive */
+@media (max-width: 800px) {
+  .main-content { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .sidebar { max-height: 45vh; border-right: none; border-bottom: 1px solid var(--border); }
+}
+ 
+/* INFO PANEL */
 .info-panel {
   position: absolute;
   background: var(--bg-elevated);
@@ -556,21 +717,18 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
   display: none;
 }
-
+ 
 .info-panel .ip-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  background: none;
-  border: none;
+  top: 10px; right: 12px;
+  background: none; border: none;
   color: var(--text-muted);
   font-size: 18px;
   cursor: pointer;
   line-height: 1;
 }
-
 .info-panel .ip-close:hover { color: var(--text); }
-
+ 
 .info-panel .ip-file {
   font-size: 13px;
   font-weight: 700;
@@ -579,7 +737,7 @@ input[type="range"]::-webkit-slider-thumb {
   padding-right: 20px;
   word-break: break-all;
 }
-
+ 
 .info-panel .ip-grid {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -587,15 +745,15 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: 11px;
   margin-bottom: 14px;
 }
-
+ 
 .info-panel .ip-label { color: var(--text-muted); }
 .info-panel .ip-val { color: var(--text); font-variant-numeric: tabular-nums; }
-
+ 
 .info-panel .ip-actions {
   display: flex;
   gap: 8px;
 }
-
+ 
 .info-panel .ip-btn {
   flex: 1;
   padding: 8px 0;
@@ -611,34 +769,19 @@ input[type="range"]::-webkit-slider-thumb {
   transition: all 0.15s;
   text-align: center;
 }
-
-.info-panel .ip-btn:hover { border-color: var(--accent); color: var(--text); }
-.info-panel .ip-btn.playing { border-color: var(--accent); color: var(--accent); background: rgba(255, 107, 74, 0.08); }
-
-.loading-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 15, 0.85);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  z-index: 60;
+ 
+.info-panel .ip-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
 }
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+ 
+.info-panel .ip-btn.playing {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 107, 74, 0.08);
 }
-
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-overlay p { font-size: 12px; color: var(--text-dim); }
-
+ 
+/* 3D VIEWER MODAL */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -648,9 +791,9 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: center;
   justify-content: center;
 }
-
+ 
 .modal-overlay.open { display: flex; }
-
+ 
 .modal-box {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -664,7 +807,7 @@ input[type="range"]::-webkit-slider-thumb {
   overflow: hidden;
   box-shadow: 0 24px 80px rgba(0,0,0,0.6);
 }
-
+ 
 .modal-header {
   display: flex;
   align-items: center;
@@ -672,35 +815,33 @@ input[type="range"]::-webkit-slider-thumb {
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
 }
-
+ 
 .modal-header h2 {
   font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 400;
 }
-
+ 
 .modal-header .modal-close {
-  background: none;
-  border: none;
+  background: none; border: none;
   color: var(--text-muted);
   font-size: 22px;
   cursor: pointer;
 }
-
 .modal-header .modal-close:hover { color: var(--text); }
-
+ 
 .modal-body {
   flex: 1;
   position: relative;
   overflow: hidden;
 }
-
+ 
 .modal-body canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
-
+ 
 .modal-hint {
   position: absolute;
   bottom: 12px;
@@ -713,17 +854,10 @@ input[type="range"]::-webkit-slider-thumb {
   color: var(--text-muted);
   pointer-events: none;
 }
-
-@media (max-width: 800px) {
-  html, body { overflow: auto; }
-  .app { height: auto; min-height: 100vh; }
-  .main-content { grid-template-columns: 1fr; grid-template-rows: auto 60vh; }
-  .sidebar { max-height: none; border-right: none; border-bottom: 1px solid var(--border); }
-}
 </style>
 </head>
 <body>
-
+ 
 <div class="app">
   <header>
     <h1><span class="icon"></span> Audio Mapper</h1>
@@ -735,33 +869,45 @@ input[type="range"]::-webkit-slider-thumb {
 
   <div class="main-content">
     <aside class="sidebar">
+      <!-- UPLOAD PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
           Input <span class="chevron">▾</span>
         </div>
-        <div class="panel-body">
-          <div class="drop-zone" id="dropZone">
-            <div class="label">
-              Drop audio files here or <strong>click to browse</strong><br>
-              <span style="font-size:10px; color: var(--text-muted)">.wav .mp3 .ogg .flac .m4a .aac .webm · multiple files supported</span>
-            </div>
-            <input type="file" id="fileInput" accept="audio/*,.wav,.mp3,.ogg,.flac,.m4a,.aac,.webm" multiple style="display:none">
-          </div>
-          <div class="file-list" id="fileList"></div>
-        </div>
-      </div>
 
+        <div class="panel-body">
+            <div class="drop-zone" id="dropZone">
+              <div class="label">
+                Drop audio files here or <strong>click to browse</strong><br>
+                <span style="font-size:10px; color: var(--text-muted)">.wav .mp3 .ogg .flac .m4a .aac .webm · multiple files supported</span>
+              </div>
+          
+              <input
+                type="file"
+                id="fileInput"
+                accept="audio/*,.wav,.mp3,.ogg,.flac,.m4a,.aac,.webm"
+                multiple
+                style="display:none"
+              >
+            </div>
+          
+            <div class="file-list" id="fileList"></div>
+          </div>
+      </div>
+ 
+      <!-- SEGMENTATION PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
           Segmentation <span class="chevron">▾</span>
         </div>
         <div class="panel-body">
-          <label class="checkbox-item">
-            <input type="checkbox" id="skipSegmentation">
-            Skip segmentation — analyze each uploaded file as one unit
-          </label>
-          <div class="range-field">
-            <label class="field-label">Onset Sensitivity (← more ╌ fewer →)</label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="skipSegmentation">
+              Skip segmentation — analyze each uploaded file as one unit
+            </label>
+          
+            <div class="range-field">
+              <label class="field-label">Onset Sensitivity (← more ╌ fewer →)</label>
             <div class="range-row">
               <input type="range" id="onsetThreshold" min="0.01" max="0.5" step="0.01" value="0.1">
               <span class="range-value" id="onsetValue">0.10</span>
@@ -783,7 +929,8 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
+      <!-- FEATURES PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
           Features / Metrics <span class="chevron">▾</span>
@@ -802,7 +949,8 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
+      <!-- REDUCTION PANEL -->
       <div class="panel">
         <div class="panel-header" onclick="togglePanel(this)">
           Dimensionality Reduction <span class="chevron">▾</span>
@@ -829,7 +977,8 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
       </div>
-
+ 
+      <!-- RUN -->
       <div class="panel">
         <div class="panel-body" style="padding-top: 16px;">
           <button class="btn btn-primary" id="runBtn" style="width:100%;" disabled onclick="runAnalysis()">
@@ -840,40 +989,66 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
       </div>
     </aside>
-
+ 
     <div class="canvas-area" id="canvasArea">
       <canvas id="mapCanvas"></canvas>
-
+ 
       <div class="empty-state" id="emptyState">
         <div class="rings">
           <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
         </div>
         <p>Upload audio and run analysis to generate your map</p>
       </div>
-
+ 
       <div class="tooltip" id="tooltip">
         <div class="tt-title" id="ttTitle"></div>
         <div class="tt-row" id="ttInfo"></div>
       </div>
-
+ 
       <div class="now-playing" id="nowPlaying">
         <div class="wave-icon"><span></span><span></span><span></span><span></span><span></span></div>
         <span id="npText">Playing...</span>
       </div>
-
+ 
       <div class="legend" id="legend"></div>
-
+ 
       <div class="zoom-controls" id="zoomControls" style="display:none">
         <button class="zoom-btn" onclick="zoomMap(1.2)">+</button>
         <button class="zoom-btn" onclick="zoomMap(1/1.2)">−</button>
         <button class="zoom-btn" onclick="resetView()" style="font-size:11px;">⟲</button>
       </div>
-
+ 
+      <div class="morph-toolbar" id="morphToolbar">
+        <button class="morph-btn" id="morphToggle" onclick="toggleMorphMode()">◇ Morph Between Two</button>
+      </div>
+ 
+      <div class="morph-panel" id="morphPanel">
+        <div class="mp-title">Morph ⟡ Interpolate Between Two Segments</div>
+        <div class="mp-endpoints">
+          <div class="mp-endpoint" id="mpEndA">A</div>
+          <div class="mp-arrow">→</div>
+          <div class="mp-endpoint" id="mpEndB">B</div>
+        </div>
+        <div class="mp-slider range-field">
+          <label class="field-label" style="display:flex;justify-content:space-between;">
+            <span>Blend</span>
+            <span class="range-value" id="mpBlendValue" style="color:var(--accent2)">50%</span>
+          </label>
+          <input type="range" id="mpBlend" min="0" max="100" step="1" value="50">
+        </div>
+        <div class="mp-actions">
+          <button class="mp-btn primary" id="mpGenerateBtn" onclick="generateMorph()">◆ Generate</button>
+          <button class="mp-btn" id="mpPlayBtn" onclick="playMorph()" disabled>▶ Play</button>
+          <button class="mp-btn" onclick="clearMorph()">✕ Clear</button>
+        </div>
+        <div class="mp-status" id="mpStatus">Pick point A and point B on the map</div>
+      </div>
+ 
       <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
         <p id="loadingText">Processing audio...</p>
       </div>
-
+ 
       <div class="info-panel" id="infoPanel">
         <button class="ip-close" onclick="closeInfoPanel()">×</button>
         <div class="ip-file" id="ipFile"></div>
@@ -881,57 +1056,64 @@ input[type="range"]::-webkit-slider-thumb {
           <span class="ip-label">Start</span><span class="ip-val" id="ipStart"></span>
           <span class="ip-label">End</span><span class="ip-val" id="ipEnd"></span>
           <span class="ip-label">Duration</span><span class="ip-val" id="ipDur"></span>
-          <span class="ip-label">Unit</span><span class="ip-val" id="ipIdx"></span>
+          <span class="ip-label">Segment</span><span class="ip-val" id="ipIdx"></span>
         </div>
         <div class="ip-actions">
           <button class="ip-btn" id="ipPlayBtn" onclick="playFromInfoPanel()">▶ Play</button>
-          <button class="ip-btn" onclick="openSpectrogramViewer()">◆ Spectrogram</button>
+          <button class="ip-btn" onclick="open3DViewer()">◆ 3D Spectrogram</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+ 
+<!-- 3D VIEWER MODAL -->
 <div class="modal-overlay" id="spectroModal">
   <div class="modal-box">
     <div class="modal-header">
-      <h2 id="modalTitle">Spectrogram</h2>
-      <button class="modal-close" onclick="closeSpectrogramViewer()">×</button>
+      <h2 id="modalTitle">3D Spectrogram</h2>
+      <button class="modal-close" onclick="close3DViewer()">×</button>
     </div>
     <div class="modal-body" id="modalBody">
-      <canvas id="spectroCanvas"></canvas>
-      <div class="modal-hint">Brightness = energy · left to right = time · low to high = frequency</div>
+      <div class="modal-hint">Click and drag to rotate · Scroll to zoom</div>
     </div>
   </div>
 </div>
-
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+// ─── STATE ────────────────────────────────────────────────────
 const state = {
-  files: [],
-  segments: [],
-  points: [],
+  files: [],         // { file, name, buffer: AudioBuffer }
+  segments: [],      // { fileIdx, start, end, audioBuffer, features: {} }
+  points: [],        // { x, y, segment }
   view: { x: 0, y: 0, scale: 1 },
   hoveredIdx: -1,
-  selectedIdx: -1,
   playingIdx: -1,
   audioCtx: null,
   currentSource: null,
-  loopInterval: null,
-  analysisMode: 'segments'
+  // Morph feature
+  morphMode: false,
+  morphA: -1,
+  morphB: -1,
+  morphBuffer: null,  // generated AudioBuffer
+  morphPlaying: false,
 };
-
+ 
 const canvas = document.getElementById('mapCanvas');
 const ctx = canvas.getContext('2d');
 let dpr = window.devicePixelRatio || 1;
-
+ 
+// ─── AUDIO CONTEXT ────────────────────────────────────────────
 function getAudioCtx() {
   if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   return state.audioCtx;
 }
-
+ 
+// ─── FILE HANDLING ────────────────────────────────────────────
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
-
+ 
 dropZone.addEventListener('click', () => fileInput.click());
 
 dropZone.addEventListener('dragover', e => {
@@ -951,70 +1133,51 @@ dropZone.addEventListener('drop', e => {
 
 fileInput.addEventListener('change', e => {
   addFiles(e.target.files);
-  fileInput.value = '';
+  fileInput.value = ''; // lets you pick the same files again later
 });
-
+ 
 function addFiles(fileList) {
   const audioExts = ['.wav', '.mp3', '.ogg', '.flac', '.aac', '.m4a', '.webm'];
-  let added = 0;
 
   for (const f of fileList) {
-    const ext = '.' + (f.name.split('.').pop() || '').toLowerCase();
+    const ext = '.' + f.name.split('.').pop().toLowerCase();
+
     if (audioExts.includes(ext) || f.type.startsWith('audio/')) {
-      const duplicate = state.files.some(existing =>
-        existing.name === f.name && existing.file.size === f.size && existing.file.lastModified === f.lastModified
-      );
-      if (!duplicate) {
-        state.files.push({ file: f, name: f.name, buffer: null });
-        added++;
-      }
+      state.files.push({ file: f, name: f.name, buffer: null });
     }
   }
 
   renderFileList();
-  updateRunButtons();
-
-  if (added > 0) setStatus(`${state.files.length} file${state.files.length === 1 ? '' : 's'} loaded`, true);
+  updateRunButton();
 }
 
 function removeFile(idx) {
   state.files.splice(idx, 1);
   renderFileList();
-  updateRunButtons();
-  setStatus(state.files.length ? `${state.files.length} file${state.files.length === 1 ? '' : 's'} loaded` : 'Waiting for audio', state.files.length > 0);
+  updateRunButton();
 }
 
-function updateRunButtons() {
-  const hasFiles = state.files.length > 0;
-  document.getElementById('runBtn').disabled = !hasFiles;
+function updateRunButton() {
+  document.getElementById('runBtn').disabled = state.files.length === 0;
 }
-
+ 
 function renderFileList() {
   const el = document.getElementById('fileList');
   el.innerHTML = state.files.map((f, i) => `
     <div class="file-item">
-      <span class="name" title="${escapeHtml(f.name)}">${escapeHtml(f.name)}</span>
-      <span class="meta">${formatBytes(f.file.size)}</span>
+      <span class="name">${f.name}</span>
+      <span class="meta">${(f.file.size / 1024).toFixed(0)}kb</span>
       <button class="remove" onclick="removeFile(${i})">×</button>
     </div>
   `).join('');
 }
-
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
-}
-
-function formatBytes(bytes) {
-  if (bytes < 1024) return bytes + 'b';
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + 'kb';
-  return (bytes / (1024 * 1024)).toFixed(1) + 'mb';
-}
-
+ 
+// ─── UI HELPERS ───────────────────────────────────────────────
 function togglePanel(header) {
   header.classList.toggle('collapsed');
   header.nextElementSibling.classList.toggle('collapsed');
 }
-
+ 
 document.getElementById('onsetThreshold').addEventListener('input', e => {
   document.getElementById('onsetValue').textContent = parseFloat(e.target.value).toFixed(2);
 });
@@ -1030,256 +1193,262 @@ document.getElementById('perplexity').addEventListener('input', e => {
 document.getElementById('neighbors').addEventListener('input', e => {
   document.getElementById('neighborsValue').textContent = e.target.value;
 });
-
+ 
 document.querySelectorAll('input[name="reduction"]').forEach(r => {
   r.addEventListener('change', () => {
-    const method = document.querySelector('input[name="reduction"]:checked').value;
-    document.getElementById('perplexityField').style.display = method === 'tsne' ? '' : 'none';
-    document.getElementById('neighborsField').style.display = method === 'umap' ? '' : 'none';
+    document.getElementById('perplexityField').style.display = r.value === 'tsne' ? '' : 'none';
+    document.getElementById('neighborsField').style.display = r.value === 'umap' ? '' : 'none';
   });
 });
-
+ 
 function setProgress(pct, text) {
-  document.getElementById('progressFill').style.width = Math.max(0, Math.min(100, pct)) + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = text || '';
 }
-
+ 
 function setStatus(text, active) {
   document.getElementById('statusText').textContent = text;
   document.getElementById('statusDot').classList.toggle('active', active);
 }
-
+ 
+// ─── CORE ANALYSIS PIPELINE ──────────────────────────────────
 async function runAnalysis() {
-  const skipSegmentation = document.getElementById('skipSegmentation').checked;
   if (state.files.length === 0) return;
-
-  const runBtn = document.getElementById('runBtn');
-  runBtn.disabled = true;
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true;
   document.getElementById('loadingOverlay').style.display = 'flex';
   setStatus('Processing...', true);
-  state.analysisMode = skipSegmentation ? 'raw' : 'segments';
-  stopPlayback();
-  closeInfoPanel(true);
-
+ 
   try {
+    // 1. Decode audio files
     setProgress(5, 'Decoding audio files...');
     document.getElementById('loadingText').textContent = 'Decoding audio files...';
-
     const actx = getAudioCtx();
     for (let i = 0; i < state.files.length; i++) {
       if (!state.files[i].buffer) {
         const arrayBuf = await state.files[i].file.arrayBuffer();
-        state.files[i].buffer = await actx.decodeAudioData(arrayBuf.slice(0));
+        state.files[i].buffer = await actx.decodeAudioData(arrayBuf);
       }
-      setProgress(5 + ((i + 1) / state.files.length) * 15, `Decoded ${i + 1} of ${state.files.length}`);
-      await yieldUI();
+      setProgress(5 + (i / state.files.length) * 15);
     }
-
-    state.segments = [];
-
-    if (skipSegmentation) {
-      setProgress(20, 'Using whole files as analysis units...');
-      document.getElementById('loadingText').textContent = 'Preparing raw files...';
-
-      for (let fi = 0; fi < state.files.length; fi++) {
-        const buf = state.files[fi].buffer;
-        state.segments.push({
-          fileIdx: fi,
-          start: 0,
-          end: buf.duration,
-          audioBuffer: buf,
-          rawFile: true
-        });
-        setProgress(20 + ((fi + 1) / state.files.length) * 20);
-      }
-    } else {
-      setProgress(20, 'Detecting onsets & segmenting...');
-      document.getElementById('loadingText').textContent = 'Detecting onsets...';
-
-      const threshold = parseFloat(document.getElementById('onsetThreshold').value);
-      const minMs = parseInt(document.getElementById('minSegment').value);
-      const maxMs = parseInt(document.getElementById('maxSegment').value);
-
-      for (let fi = 0; fi < state.files.length; fi++) {
-        const buf = state.files[fi].buffer;
-        const onsets = detectOnsets(buf, threshold, minMs / 1000);
-        const segs = buildSegments(buf, onsets, minMs / 1000, maxMs / 1000);
-
-        for (const seg of segs) {
-          state.segments.push({
-            fileIdx: fi,
-            start: seg.start,
-            end: seg.end,
-            audioBuffer: buf,
-            rawFile: false
-          });
-        }
-
-        setProgress(20 + ((fi + 1) / state.files.length) * 20);
-        await yieldUI();
-      }
-    }
-
-    if (state.segments.length < 2) {
-      alert(skipSegmentation
-        ? 'Raw-file mode needs at least two audio files to make a map.'
-        : 'Not enough segments found. Try lowering onset sensitivity or adding more audio.'
-      );
-      throw new Error('Too few analysis units');
-    }
-
+ 
+    // 2. Segmentation, unless skipped
+          const skipSegmentation = document.getElementById('skipSegmentation').checked;
+          
+          state.segments = [];
+          
+          if (skipSegmentation) {
+            setProgress(20, 'Skipping segmentation...');
+            document.getElementById('loadingText').textContent = 'Using each uploaded file as one analysis unit...';
+          
+            for (let fi = 0; fi < state.files.length; fi++) {
+              const buf = state.files[fi].buffer;
+          
+              state.segments.push({
+                fileIdx: fi,
+                start: 0,
+                end: buf.duration,
+                audioBuffer: buf,
+                rawFile: true
+              });
+          
+              setProgress(20 + (fi / state.files.length) * 20);
+            }
+          } else {
+            setProgress(20, 'Detecting onsets & segmenting...');
+            document.getElementById('loadingText').textContent = 'Detecting onsets...';
+          
+            const threshold = parseFloat(document.getElementById('onsetThreshold').value);
+            const minMs = parseInt(document.getElementById('minSegment').value);
+            const maxMs = parseInt(document.getElementById('maxSegment').value);
+          
+            for (let fi = 0; fi < state.files.length; fi++) {
+              const buf = state.files[fi].buffer;
+              const onsets = detectOnsets(buf, threshold, minMs / 1000);
+              const segs = buildSegments(buf, onsets, minMs / 1000, maxMs / 1000);
+          
+              for (const seg of segs) {
+                state.segments.push({
+                  fileIdx: fi,
+                  start: seg.start,
+                  end: seg.end,
+                  audioBuffer: buf,
+                  rawFile: false
+                });
+              }
+          
+              setProgress(20 + (fi / state.files.length) * 20);
+            }
+          }
+          
+          if (state.segments.length < 2) {
+            alert(
+              skipSegmentation
+                ? 'Skip segmentation needs at least two audio files to make a map.'
+                : 'Not enough segments found. Try lowering onset sensitivity or adding more audio.'
+            );
+            throw new Error('Too few analysis units');
+          }
+ 
+    // 3. Feature extraction
+    const unitLabel = skipSegmentation ? 'files' : 'segments';
+    setProgress(40, `Extracting features from ${state.segments.length} ${unitLabel}...`);
+    document.getElementById('loadingText').textContent = `Extracting features (${state.segments.length} ${unitLabel})...`;
     const selectedFeatures = Array.from(document.querySelectorAll('input[name="feature"]:checked')).map(c => c.value);
     if (selectedFeatures.length === 0) {
       alert('Please select at least one feature.');
       throw new Error('No features selected');
     }
-
-    setProgress(40, `Extracting features from ${state.segments.length} ${skipSegmentation ? 'files' : 'segments'}...`);
-    document.getElementById('loadingText').textContent = `Extracting features...`;
-
+ 
     const featureMatrix = [];
     for (let i = 0; i < state.segments.length; i++) {
       const seg = state.segments[i];
       const vec = extractFeatures(seg.audioBuffer, seg.start, seg.end, selectedFeatures);
       featureMatrix.push(vec);
       state.segments[i].features = vec;
-      if (i % 8 === 0 || i === state.segments.length - 1) {
-        setProgress(40 + ((i + 1) / state.segments.length) * 30);
-        await yieldUI();
-      }
+      if (i % 10 === 0) setProgress(40 + (i / state.segments.length) * 30);
     }
-
+ 
+    // 4. Normalize features
     setProgress(70, 'Normalizing feature matrix...');
     const normalized = normalizeMatrix(featureMatrix);
-
+ 
+    // 5. Dimensionality reduction
     const method = document.querySelector('input[name="reduction"]:checked').value;
     setProgress(75, `Running ${method.toUpperCase()}...`);
     document.getElementById('loadingText').textContent = `Running ${method.toUpperCase()}...`;
-
+ 
     let coords;
     if (method === 'pca') {
       coords = runPCA(normalized);
     } else if (method === 'tsne') {
       const perp = parseInt(document.getElementById('perplexity').value);
-      coords = await runTSNE(normalized, perp, p => setProgress(75 + p * 20));
+      coords = await runTSNE(normalized, perp, (p) => setProgress(75 + p * 20));
     } else {
       const nn = parseInt(document.getElementById('neighbors').value);
       coords = runUMAP(normalized, nn);
     }
-
+ 
     setProgress(95, 'Building map...');
-
+ 
+    // 6. Build points
     state.points = coords.map((c, i) => ({
-      x: c[0],
-      y: c[1],
+      x: c[0], y: c[1],
       segment: state.segments[i],
-      fileIdx: state.segments[i].fileIdx
+      fileIdx: state.segments[i].fileIdx,
     }));
-
-    normalizePointCoordinates();
+ 
+    // Normalize coordinates to [-1, 1]
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const p of state.points) {
+      if (p.x < minX) minX = p.x;
+      if (p.x > maxX) maxX = p.x;
+      if (p.y < minY) minY = p.y;
+      if (p.y > maxY) maxY = p.y;
+    }
+    const rangeX = maxX - minX || 1;
+    const rangeY = maxY - minY || 1;
+    for (const p of state.points) {
+      p.x = ((p.x - minX) / rangeX) * 2 - 1;
+      p.y = ((p.y - minY) / rangeY) * 2 - 1;
+    }
+ 
     state.view = { x: 0, y: 0, scale: 1 };
-
     document.getElementById('emptyState').style.display = 'none';
     document.getElementById('zoomControls').style.display = '';
+    document.getElementById('morphToolbar').classList.add('visible');
     buildLegend();
-
-    const unitLabel = skipSegmentation ? 'raw files' : 'segments';
     setProgress(100, `Done! ${state.segments.length} ${unitLabel} mapped.`);
     setStatus(`${state.segments.length} ${unitLabel} mapped`, true);
     drawMap();
+ 
   } catch (err) {
     console.error(err);
     setStatus('Error occurred', false);
   } finally {
     document.getElementById('loadingOverlay').style.display = 'none';
-    updateRunButtons();
+    btn.disabled = false;
   }
 }
-
-function yieldUI() {
-  return new Promise(resolve => setTimeout(resolve, 0));
-}
-
-function normalizePointCoordinates() {
-  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-  for (const p of state.points) {
-    if (p.x < minX) minX = p.x;
-    if (p.x > maxX) maxX = p.x;
-    if (p.y < minY) minY = p.y;
-    if (p.y > maxY) maxY = p.y;
-  }
-
-  const rangeX = maxX - minX || 1;
-  const rangeY = maxY - minY || 1;
-  for (const p of state.points) {
-    p.x = ((p.x - minX) / rangeX) * 2 - 1;
-    p.y = ((p.y - minY) / rangeY) * 2 - 1;
-  }
-}
-
+ 
+// ─── ONSET DETECTION ─────────────────────────────────────────
 function detectOnsets(audioBuffer, sensitivity, minGap) {
   const data = audioBuffer.getChannelData(0);
   const sr = audioBuffer.sampleRate;
-  const hopSize = Math.round(sr * 0.01);
+  const hopSize = Math.round(sr * 0.01); // 10ms hop
   const frameSize = hopSize * 2;
-  const onsets = [0];
-
+  const onsets = [0]; // always start at 0
+ 
+  // 1. Compute energy for every frame
   const energies = [];
   for (let i = 0; i < data.length - frameSize; i += hopSize) {
     let energy = 0;
-    for (let j = 0; j < frameSize; j++) energy += data[i + j] * data[i + j];
+    for (let j = 0; j < frameSize; j++) {
+      energy += data[i + j] * data[i + j];
+    }
     energies.push(energy / frameSize);
   }
-
+ 
   if (energies.length < 3) return onsets;
-
+ 
+  // 2. Compute energy differences (onset detection function)
   const diffs = [0];
-  for (let i = 1; i < energies.length; i++) diffs.push(Math.max(0, energies[i] - energies[i - 1]));
-
-  const windowSize = Math.max(10, Math.round(0.2 * sr / hopSize));
+  for (let i = 1; i < energies.length; i++) {
+    diffs.push(Math.max(0, energies[i] - energies[i - 1])); // half-wave rectify
+  }
+ 
+  // 3. Compute adaptive threshold using a moving median + mean
+  const windowSize = Math.max(10, Math.round(0.2 * sr / hopSize)); // ~200ms window
   const meanDiff = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+  // sensitivity slider (0.01..0.5): low value = more sensitive = lower threshold
+  // We invert it: threshold multiplier = sensitivity mapped so 0.01 → 0.5x mean, 0.5 → 8x mean
   const thresholdMult = 0.5 + (sensitivity / 0.5) * 7.5;
-
+ 
   for (let i = 1; i < diffs.length; i++) {
+    // Local adaptive threshold: mean of surrounding window
     const wStart = Math.max(0, i - windowSize);
     const wEnd = Math.min(diffs.length, i + windowSize);
     let localSum = 0;
     for (let j = wStart; j < wEnd; j++) localSum += diffs[j];
     const localMean = localSum / (wEnd - wStart);
+ 
     const adaptiveThreshold = Math.max(localMean * thresholdMult, meanDiff * 0.1);
-
+ 
     if (diffs[i] > adaptiveThreshold && diffs[i] > 0) {
       const timeSec = (i * hopSize) / sr;
-      if (timeSec - onsets[onsets.length - 1] > minGap) onsets.push(timeSec);
+      if (timeSec - onsets[onsets.length - 1] > minGap) {
+        onsets.push(timeSec);
+      }
     }
   }
-
+ 
+  // If we still got very few onsets, fall back to uniform segmentation
   if (onsets.length < 3) {
     onsets.length = 0;
     const dur = audioBuffer.duration;
-    const segLen = Math.max(minGap, 0.25);
-    for (let t = 0; t < dur; t += segLen) onsets.push(t);
+    const segLen = Math.max(minGap, 0.25); // quarter-second segments
+    for (let t = 0; t < dur; t += segLen) {
+      onsets.push(t);
+    }
   }
-
+ 
   return onsets;
 }
-
+ 
 function buildSegments(audioBuffer, onsets, minLen, maxLen) {
   const duration = audioBuffer.duration;
   const segments = [];
-
   for (let i = 0; i < onsets.length; i++) {
     const start = onsets[i];
-    const end = i < onsets.length - 1
-      ? Math.min(onsets[i + 1], start + maxLen)
-      : Math.min(duration, start + maxLen);
-
-    if (end - start >= minLen) segments.push({ start, end });
+    const end = i < onsets.length - 1 ? Math.min(onsets[i + 1], start + maxLen) : Math.min(duration, start + maxLen);
+    if (end - start >= minLen) {
+      segments.push({ start, end });
+    }
   }
-
   return segments;
 }
-
+ 
+// ─── FEATURE EXTRACTION ──────────────────────────────────────
 function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
   const sr = audioBuffer.sampleRate;
   const data = audioBuffer.getChannelData(0);
@@ -1287,14 +1456,18 @@ function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
   const endIdx = Math.min(Math.floor(endSec * sr), data.length);
   const segment = data.slice(startIdx, endIdx);
   const N = segment.length;
-
+ 
   if (N < 2) return featureNames.map(() => 0);
-
+ 
   const vec = [];
+ 
+  // Helper: compute FFT magnitude (simplified DFT for small segments, or approximation)
   let fftMag = null;
   const needSpectral = featureNames.some(f => ['centroid', 'bandwidth', 'rolloff', 'flatness', 'mfcc', 'chroma'].includes(f));
-  if (needSpectral) fftMag = computeFFTMagnitude(segment);
-
+  if (needSpectral) {
+    fftMag = computeFFTMagnitude(segment);
+  }
+ 
   for (const fname of featureNames) {
     switch (fname) {
       case 'rms': {
@@ -1305,60 +1478,73 @@ function extractFeatures(audioBuffer, startSec, endSec, featureNames) {
       }
       case 'zcr': {
         let crossings = 0;
-        for (let i = 1; i < N; i++) if ((segment[i] >= 0) !== (segment[i - 1] >= 0)) crossings++;
+        for (let i = 1; i < N; i++) {
+          if ((segment[i] >= 0) !== (segment[i - 1] >= 0)) crossings++;
+        }
         vec.push(crossings / N);
         break;
       }
-      case 'centroid':
+      case 'centroid': {
         vec.push(spectralCentroid(fftMag, sr));
         break;
+      }
       case 'bandwidth': {
         const cent = spectralCentroid(fftMag, sr);
         vec.push(spectralBandwidth(fftMag, sr, cent));
         break;
       }
-      case 'rolloff':
+      case 'rolloff': {
         vec.push(spectralRolloff(fftMag, sr, 0.85));
         break;
-      case 'flatness':
+      }
+      case 'flatness': {
         vec.push(spectralFlatness(fftMag));
         break;
-      case 'mfcc':
-        vec.push(...computeMFCC(fftMag, sr, 13));
+      }
+      case 'mfcc': {
+        const mfccs = computeMFCC(fftMag, sr, 13);
+        vec.push(...mfccs);
         break;
-      case 'chroma':
-        vec.push(...computeChroma(fftMag, sr));
+      }
+      case 'chroma': {
+        const chroma = computeChroma(fftMag, sr);
+        vec.push(...chroma);
         break;
+      }
     }
   }
-
   return vec;
 }
-
+ 
 function computeFFTMagnitude(signal) {
+  // Use power-of-2 FFT size
   let fftSize = 1;
   while (fftSize < signal.length) fftSize *= 2;
-  fftSize = Math.min(fftSize, 4096);
-
+  fftSize = Math.min(fftSize, 4096); // cap for performance
+ 
   const re = new Float32Array(fftSize);
   const im = new Float32Array(fftSize);
   const len = Math.min(signal.length, fftSize);
-
+ 
+  // Apply Hann window
   for (let i = 0; i < len; i++) {
-    const w = len > 1 ? 0.5 * (1 - Math.cos(2 * Math.PI * i / (len - 1))) : 1;
+    const w = 0.5 * (1 - Math.cos(2 * Math.PI * i / (len - 1)));
     re[i] = signal[i] * w;
   }
-
+ 
   fftInPlace(re, im);
-
+ 
   const mag = new Float32Array(fftSize / 2);
-  for (let i = 0; i < mag.length; i++) mag[i] = Math.sqrt(re[i] * re[i] + im[i] * im[i]);
+  for (let i = 0; i < mag.length; i++) {
+    mag[i] = Math.sqrt(re[i] * re[i] + im[i] * im[i]);
+  }
   return mag;
 }
-
+ 
+// Cooley-Tukey FFT in-place
 function fftInPlace(re, im) {
   const n = re.length;
-
+  // Bit reversal
   for (let i = 1, j = 0; i < n; i++) {
     let bit = n >> 1;
     for (; j & bit; bit >>= 1) j ^= bit;
@@ -1368,38 +1554,31 @@ function fftInPlace(re, im) {
       [im[i], im[j]] = [im[j], im[i]];
     }
   }
-
+  // FFT
   for (let len = 2; len <= n; len *= 2) {
     const angle = -2 * Math.PI / len;
     const wRe = Math.cos(angle);
     const wIm = Math.sin(angle);
-
     for (let i = 0; i < n; i += len) {
-      let curRe = 1;
-      let curIm = 0;
-
+      let curRe = 1, curIm = 0;
       for (let j = 0; j < len / 2; j++) {
-        const uRe = re[i + j];
-        const uIm = im[i + j];
+        const uRe = re[i + j], uIm = im[i + j];
         const vRe = re[i + j + len / 2] * curRe - im[i + j + len / 2] * curIm;
         const vIm = re[i + j + len / 2] * curIm + im[i + j + len / 2] * curRe;
-
         re[i + j] = uRe + vRe;
         im[i + j] = uIm + vIm;
         re[i + j + len / 2] = uRe - vRe;
         im[i + j + len / 2] = uIm - vIm;
-
-        const nextRe = curRe * wRe - curIm * wIm;
+        const newCurRe = curRe * wRe - curIm * wIm;
         curIm = curRe * wIm + curIm * wRe;
-        curRe = nextRe;
+        curRe = newCurRe;
       }
     }
   }
 }
-
+ 
 function spectralCentroid(mag, sr) {
-  let num = 0;
-  let den = 0;
+  let num = 0, den = 0;
   for (let i = 0; i < mag.length; i++) {
     const freq = (i * sr) / (mag.length * 2);
     num += freq * mag[i];
@@ -1407,10 +1586,9 @@ function spectralCentroid(mag, sr) {
   }
   return den > 0 ? num / den : 0;
 }
-
+ 
 function spectralBandwidth(mag, sr, centroid) {
-  let num = 0;
-  let den = 0;
+  let num = 0, den = 0;
   for (let i = 0; i < mag.length; i++) {
     const freq = (i * sr) / (mag.length * 2);
     num += mag[i] * (freq - centroid) ** 2;
@@ -1418,7 +1596,7 @@ function spectralBandwidth(mag, sr, centroid) {
   }
   return den > 0 ? Math.sqrt(num / den) : 0;
 }
-
+ 
 function spectralRolloff(mag, sr, pct) {
   let total = 0;
   for (let i = 0; i < mag.length; i++) total += mag[i];
@@ -1430,12 +1608,9 @@ function spectralRolloff(mag, sr, pct) {
   }
   return sr / 2;
 }
-
+ 
 function spectralFlatness(mag) {
-  let logSum = 0;
-  let linSum = 0;
-  let count = 0;
-
+  let logSum = 0, linSum = 0, count = 0;
   for (let i = 1; i < mag.length; i++) {
     if (mag[i] > 0) {
       logSum += Math.log(mag[i]);
@@ -1443,24 +1618,22 @@ function spectralFlatness(mag) {
       count++;
     }
   }
-
   if (count === 0 || linSum === 0) return 0;
   return Math.exp(logSum / count) / (linSum / count);
 }
-
+ 
 function computeMFCC(mag, sr, numCoeffs) {
   const numFilters = 26;
   const minMel = hzToMel(0);
   const maxMel = hzToMel(sr / 2);
   const melPoints = [];
-
   for (let i = 0; i <= numFilters + 1; i++) {
     melPoints.push(melToHz(minMel + (maxMel - minMel) * i / (numFilters + 1)));
   }
-
+ 
   const bins = melPoints.map(f => Math.floor((f / (sr / 2)) * mag.length));
   const filterEnergies = [];
-
+ 
   for (let m = 0; m < numFilters; m++) {
     let energy = 0;
     for (let k = bins[m]; k < bins[m + 2] && k < mag.length; k++) {
@@ -1474,7 +1647,8 @@ function computeMFCC(mag, sr, numCoeffs) {
     }
     filterEnergies.push(energy > 0 ? Math.log(energy) : -10);
   }
-
+ 
+  // DCT-II
   const mfccs = [];
   for (let i = 0; i < numCoeffs; i++) {
     let sum = 0;
@@ -1483,16 +1657,14 @@ function computeMFCC(mag, sr, numCoeffs) {
     }
     mfccs.push(sum);
   }
-
   return mfccs;
 }
-
+ 
 function hzToMel(hz) { return 2595 * Math.log10(1 + hz / 700); }
 function melToHz(mel) { return 700 * (Math.pow(10, mel / 2595) - 1); }
-
+ 
 function computeChroma(mag, sr) {
   const chroma = new Float32Array(12);
-
   for (let i = 1; i < mag.length; i++) {
     const freq = (i * sr) / (mag.length * 2);
     if (freq < 20) continue;
@@ -1500,41 +1672,40 @@ function computeChroma(mag, sr) {
     const bin = Math.round(midi) % 12;
     chroma[bin < 0 ? bin + 12 : bin] += mag[i] * mag[i];
   }
-
+  // normalize
   let maxC = 0;
   for (let i = 0; i < 12; i++) if (chroma[i] > maxC) maxC = chroma[i];
   if (maxC > 0) for (let i = 0; i < 12; i++) chroma[i] /= maxC;
-
   return Array.from(chroma);
 }
-
+ 
+// ─── NORMALIZE MATRIX ────────────────────────────────────────
 function normalizeMatrix(matrix) {
   const dim = matrix[0].length;
   const means = new Float32Array(dim);
   const stds = new Float32Array(dim);
   const n = matrix.length;
-
+ 
   for (let j = 0; j < dim; j++) {
     let sum = 0;
     for (let i = 0; i < n; i++) sum += matrix[i][j];
     means[j] = sum / n;
   }
-
   for (let j = 0; j < dim; j++) {
     let sum = 0;
     for (let i = 0; i < n; i++) sum += (matrix[i][j] - means[j]) ** 2;
     stds[j] = Math.sqrt(sum / n) || 1;
   }
-
+ 
   return matrix.map(row => row.map((v, j) => (v - means[j]) / stds[j]));
 }
-
+ 
+// ─── PCA ─────────────────────────────────────────────────────
 function runPCA(data) {
   const n = data.length;
   const dim = data[0].length;
-
-  if (dim === 1) return data.map(row => [row[0], 0]);
-
+ 
+  // Covariance matrix
   const cov = [];
   for (let i = 0; i < dim; i++) {
     cov[i] = new Float32Array(dim);
@@ -1545,50 +1716,52 @@ function runPCA(data) {
       if (j !== i) cov[j][i] = cov[i][j];
     }
   }
-
+ 
+  // Power iteration for top 2 eigenvectors
   const eigenvectors = [];
   for (let ev = 0; ev < 2; ev++) {
     let vec = new Float32Array(dim);
     for (let i = 0; i < dim; i++) vec[i] = Math.random() - 0.5;
-
+ 
     for (let iter = 0; iter < 100; iter++) {
       const newVec = new Float32Array(dim);
       for (let i = 0; i < dim; i++) {
         for (let j = 0; j < dim; j++) newVec[i] += cov[i][j] * vec[j];
       }
-
+      // Deflate
       for (const prev of eigenvectors) {
         let dot = 0;
         for (let i = 0; i < dim; i++) dot += newVec[i] * prev[i];
         for (let i = 0; i < dim; i++) newVec[i] -= dot * prev[i];
       }
-
+      // Normalize
       let norm = 0;
       for (let i = 0; i < dim; i++) norm += newVec[i] * newVec[i];
       norm = Math.sqrt(norm) || 1;
       for (let i = 0; i < dim; i++) newVec[i] /= norm;
       vec = newVec;
     }
-
     eigenvectors.push(vec);
   }
-
-  return data.map(row => eigenvectors.map(ev => {
-    let sum = 0;
-    for (let i = 0; i < dim; i++) sum += row[i] * ev[i];
-    return sum;
-  }));
+ 
+  // Project
+  return data.map(row => {
+    return eigenvectors.map(ev => {
+      let sum = 0;
+      for (let i = 0; i < dim; i++) sum += row[i] * ev[i];
+      return sum;
+    });
+  });
 }
-
+ 
+// ─── t-SNE ───────────────────────────────────────────────────
 async function runTSNE(data, perplexity, onProgress) {
   const n = data.length;
   const dim = data[0].length;
-
-  if (n < 4) return runPCA(data);
-
   perplexity = Math.min(perplexity, Math.floor((n - 1) / 3));
   if (perplexity < 1) perplexity = 1;
-
+ 
+  // Pairwise distances
   const dist = new Float32Array(n * n);
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
@@ -1598,40 +1771,35 @@ async function runTSNE(data, perplexity, onProgress) {
       dist[j * n + i] = d;
     }
   }
-
+ 
+  // Compute P
   const P = new Float32Array(n * n);
-
   for (let i = 0; i < n; i++) {
-    let lo = 1e-10;
-    let hi = 1e4;
-    let sigma = 1;
-
-    for (let iter = 0; iter < 40; iter++) {
+    let lo = 1e-10, hi = 1e4, sigma = 1;
+    for (let iter = 0; iter < 50; iter++) {
       sigma = (lo + hi) / 2;
       let sumP = 0;
-
       for (let j = 0; j < n; j++) {
         if (j === i) continue;
         P[i * n + j] = Math.exp(-dist[i * n + j] / (2 * sigma * sigma));
         sumP += P[i * n + j];
       }
-
+      // entropy
       let H = 0;
       for (let j = 0; j < n; j++) {
         if (j === i) continue;
-        const p = P[i * n + j] / (sumP || 1);
+        const p = P[i * n + j] / sumP;
         if (p > 1e-10) H -= p * Math.log2(p);
       }
-
       if (H > Math.log2(perplexity)) hi = sigma;
       else lo = sigma;
     }
-
     let sumP = 0;
     for (let j = 0; j < n; j++) sumP += P[i * n + j];
-    for (let j = 0; j < n; j++) P[i * n + j] /= (sumP || 1);
+    for (let j = 0; j < n; j++) P[i * n + j] /= sumP;
   }
-
+ 
+  // Symmetrize
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
       const avg = (P[i * n + j] + P[j * n + i]) / (2 * n);
@@ -1639,19 +1807,25 @@ async function runTSNE(data, perplexity, onProgress) {
       P[j * n + i] = avg;
     }
   }
-
-  const init = runPCA(data);
-  const Y = init.map(c => [c[0] * 0.01 + Math.random() * 0.001, c[1] * 0.01 + Math.random() * 0.001]);
-  const gains = Array.from({ length: n }, () => [1, 1]);
-  const veloc = Array.from({ length: n }, () => [0, 0]);
-
+ 
+  // Initialize Y randomly
+  const Y = [];
+  for (let i = 0; i < n; i++) Y.push([Math.random() * 0.01, Math.random() * 0.01]);
+ 
+  const gains = [];
+  const veloc = [];
+  for (let i = 0; i < n; i++) {
+    gains.push([1, 1]);
+    veloc.push([0, 0]);
+  }
+ 
   const lr = 100;
   const iters = 300;
-
+ 
   for (let t = 0; t < iters; t++) {
+    // Compute Q
     const qNum = new Float32Array(n * n);
     let qSum = 0;
-
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j < n; j++) {
         const d = (Y[i][0] - Y[j][0]) ** 2 + (Y[i][1] - Y[j][1]) ** 2;
@@ -1661,61 +1835,53 @@ async function runTSNE(data, perplexity, onProgress) {
         qSum += 2 * v;
       }
     }
-
+ 
+    // Gradient
     const exaggeration = t < 100 ? 4 : 1;
-
     for (let i = 0; i < n; i++) {
-      let gx = 0;
-      let gy = 0;
-
+      let gx = 0, gy = 0;
       for (let j = 0; j < n; j++) {
         if (i === j) continue;
         const pij = P[i * n + j] * exaggeration;
-        const qij = qNum[i * n + j] / (qSum || 1);
+        const qij = qNum[i * n + j] / qSum;
         const mult = 4 * (pij - qij) * qNum[i * n + j];
         gx += mult * (Y[i][0] - Y[j][0]);
         gy += mult * (Y[i][1] - Y[j][1]);
       }
-
+ 
+      // Update with momentum
       for (let d = 0; d < 2; d++) {
         const g = d === 0 ? gx : gy;
         gains[i][d] = (Math.sign(g) !== Math.sign(veloc[i][d])) ? gains[i][d] + 0.2 : gains[i][d] * 0.8;
-        gains[i][d] = Math.max(gains[i][d], 0.01);
+        if (gains[i][d] < 0.01) gains[i][d] = 0.01;
         const mom = t < 100 ? 0.5 : 0.8;
         veloc[i][d] = mom * veloc[i][d] - lr * gains[i][d] * g;
         Y[i][d] += veloc[i][d];
       }
     }
-
-    let cx = 0;
-    let cy = 0;
-    for (let i = 0; i < n; i++) {
-      cx += Y[i][0];
-      cy += Y[i][1];
-    }
-    cx /= n;
-    cy /= n;
-    for (let i = 0; i < n; i++) {
-      Y[i][0] -= cx;
-      Y[i][1] -= cy;
-    }
-
+ 
+    // Center
+    let cx = 0, cy = 0;
+    for (let i = 0; i < n; i++) { cx += Y[i][0]; cy += Y[i][1]; }
+    cx /= n; cy /= n;
+    for (let i = 0; i < n; i++) { Y[i][0] -= cx; Y[i][1] -= cy; }
+ 
     if (t % 30 === 0) {
       onProgress(t / iters);
-      await yieldUI();
+      await new Promise(r => setTimeout(r, 0)); // yield
     }
   }
-
+ 
   return Y;
 }
-
+ 
+// ─── UMAP (simplified) ──────────────────────────────────────
 function runUMAP(data, nNeighbors) {
   const n = data.length;
   const dim = data[0].length;
-  if (n < 4) return runPCA(data);
-
-  nNeighbors = Math.max(2, Math.min(nNeighbors, n - 1));
-
+  nNeighbors = Math.min(nNeighbors, n - 1);
+ 
+  // Pairwise distances
   const dists = [];
   for (let i = 0; i < n; i++) {
     const row = [];
@@ -1727,32 +1893,36 @@ function runUMAP(data, nNeighbors) {
     }
     dists.push(row);
   }
-
+ 
+  // k-nearest neighbors graph
   const knn = [];
   for (let i = 0; i < n; i++) {
     const indices = Array.from({ length: n }, (_, j) => j).filter(j => j !== i);
     indices.sort((a, b) => dists[i][a] - dists[i][b]);
     knn.push(indices.slice(0, nNeighbors));
   }
-
+ 
+  // Compute fuzzy simplicial set (simplified)
   const graph = new Float32Array(n * n);
   for (let i = 0; i < n; i++) {
-    const rho = dists[i][knn[i][0]];
-    let lo = 1e-10;
-    let hi = 100;
-    let sigma = 1;
-
-    for (let iter = 0; iter < 40; iter++) {
+    const rho = dists[i][knn[i][0]]; // distance to nearest neighbor
+    // Binary search for sigma
+    let lo = 1e-10, hi = 100, sigma = 1;
+    for (let iter = 0; iter < 50; iter++) {
       sigma = (lo + hi) / 2;
       let sum = 0;
-      for (const j of knn[i]) sum += Math.exp(-Math.max(0, dists[i][j] - rho) / sigma);
+      for (const j of knn[i]) {
+        sum += Math.exp(-Math.max(0, dists[i][j] - rho) / sigma);
+      }
       if (sum > Math.log2(nNeighbors)) hi = sigma;
       else lo = sigma;
     }
-
-    for (const j of knn[i]) graph[i * n + j] = Math.exp(-Math.max(0, dists[i][j] - rho) / sigma);
+    for (const j of knn[i]) {
+      graph[i * n + j] = Math.exp(-Math.max(0, dists[i][j] - rho) / sigma);
+    }
   }
-
+ 
+  // Symmetrize
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
       const v = graph[i * n + j] + graph[j * n + i] - graph[i * n + j] * graph[j * n + i];
@@ -1760,69 +1930,69 @@ function runUMAP(data, nNeighbors) {
       graph[j * n + i] = v;
     }
   }
-
+ 
+  // Initialize with spectral-like init (just use PCA for stability)
   const Y = runPCA(data).map(c => [c[0] * 0.01, c[1] * 0.01]);
+ 
+  // SGD optimization
   const epochs = 200;
-
+  const aParam = 1.0, bParam = 1.0;
+ 
   for (let ep = 0; ep < epochs; ep++) {
     const lr = 1.0 * (1 - ep / epochs);
-
     for (let i = 0; i < n; i++) {
       for (const j of knn[i]) {
         const w = graph[i * n + j];
         if (w <= 0) continue;
-
         const dx = Y[i][0] - Y[j][0];
         const dy = Y[i][1] - Y[j][1];
         const d2 = dx * dx + dy * dy + 1e-10;
-        const grad = -2 / (1 + d2);
-
+        const grad = -2 * aParam * bParam * Math.pow(d2, bParam - 1) / (1 + aParam * Math.pow(d2, bParam));
         Y[i][0] += lr * w * grad * dx;
         Y[i][1] += lr * w * grad * dy;
         Y[j][0] -= lr * w * grad * dx;
         Y[j][1] -= lr * w * grad * dy;
       }
-
+ 
       const neg = Math.floor(Math.random() * n);
       if (neg !== i) {
         const dx = Y[i][0] - Y[neg][0];
         const dy = Y[i][1] - Y[neg][1];
         const d2 = dx * dx + dy * dy + 1e-10;
-        const repulse = 2 / ((0.001 + d2) * (1 + d2));
+        const repulse = 2 * bParam / ((0.001 + d2) * (1 + aParam * Math.pow(d2, bParam)));
         Y[i][0] += lr * repulse * dx;
         Y[i][1] += lr * repulse * dy;
       }
     }
   }
-
+ 
   return Y;
 }
-
+ 
+// ─── LEGEND ──────────────────────────────────────────────────
 const FILE_COLORS = [
   '#ff6b4a', '#4af0c8', '#7b6bff', '#ffcb4a', '#ff4aaa',
   '#4ac8ff', '#8aff4a', '#ff8a4a', '#c84aff', '#4aff8a'
 ];
-
+ 
 function buildLegend() {
   const legend = document.getElementById('legend');
-
   if (state.files.length <= 1) {
     legend.style.display = 'none';
     return;
   }
-
   legend.style.display = '';
   let html = '<div class="legend-title">Sources</div>';
   state.files.forEach((f, i) => {
     const color = FILE_COLORS[i % FILE_COLORS.length];
-    html += `<div class="legend-item"><div class="legend-swatch" style="background:${color}"></div>${escapeHtml(f.name)}</div>`;
+    html += `<div class="legend-item"><div class="legend-swatch" style="background:${color}"></div>${f.name}</div>`;
   });
   legend.innerHTML = html;
 }
-
+ 
+// ─── MAP RENDERING ───────────────────────────────────────────
 function resizeCanvas() {
   const area = document.getElementById('canvasArea');
-  dpr = window.devicePixelRatio || 1;
   canvas.width = area.clientWidth * dpr;
   canvas.height = area.clientHeight * dpr;
   canvas.style.width = area.clientWidth + 'px';
@@ -1830,10 +2000,10 @@ function resizeCanvas() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   if (state.points.length) drawMap();
 }
-
+ 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
-
+ 
 function worldToScreen(wx, wy) {
   const area = document.getElementById('canvasArea');
   const w = area.clientWidth;
@@ -1843,96 +2013,171 @@ function worldToScreen(wx, wy) {
   const sy = (wy - state.view.y) * state.view.scale * ((h - padding * 2) / 2) + h / 2;
   return [sx, sy];
 }
-
+ 
+function screenToWorld(sx, sy) {
+  const area = document.getElementById('canvasArea');
+  const w = area.clientWidth;
+  const h = area.clientHeight;
+  const padding = 60;
+  const wx = (sx - w / 2) / (state.view.scale * ((w - padding * 2) / 2)) + state.view.x;
+  const wy = (sy - h / 2) / (state.view.scale * ((h - padding * 2) / 2)) + state.view.y;
+  return [wx, wy];
+}
+ 
 function drawMap() {
   const area = document.getElementById('canvasArea');
   const w = area.clientWidth;
   const h = area.clientHeight;
   ctx.clearRect(0, 0, w, h);
-
+ 
+  // Grid
   ctx.strokeStyle = 'rgba(255,255,255,0.03)';
   ctx.lineWidth = 0.5;
-
   for (let gx = -2; gx <= 2; gx += 0.25) {
     const [sx] = worldToScreen(gx, 0);
     if (sx > 0 && sx < w) {
-      ctx.beginPath();
-      ctx.moveTo(sx, 0);
-      ctx.lineTo(sx, h);
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
     }
   }
-
   for (let gy = -2; gy <= 2; gy += 0.25) {
     const [, sy] = worldToScreen(0, gy);
     if (sy > 0 && sy < h) {
-      ctx.beginPath();
-      ctx.moveTo(0, sy);
-      ctx.lineTo(w, sy);
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
     }
   }
-
+ 
+  // Points
   const multiFile = state.files.length > 1;
-
   for (let i = 0; i < state.points.length; i++) {
     const p = state.points[i];
     const [sx, sy] = worldToScreen(p.x, p.y);
     if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
-
+ 
     const isHovered = i === state.hoveredIdx;
     const isPlaying = i === state.playingIdx;
     const baseColor = multiFile ? FILE_COLORS[p.fileIdx % FILE_COLORS.length] : '#ff6b4a';
     const radius = isHovered ? 7 : isPlaying ? 8 : 4;
-
+ 
     if (isPlaying) {
       ctx.beginPath();
       ctx.arc(sx, sy, 16, 0, Math.PI * 2);
-      ctx.fillStyle = hexToRgba(baseColor, 0.15);
+      ctx.fillStyle = baseColor.replace(')', ', 0.15)').replace('rgb', 'rgba');
+      if (!ctx.fillStyle.includes('rgba')) ctx.fillStyle = hexToRgba(baseColor, 0.15);
       ctx.fill();
     }
-
+ 
     ctx.beginPath();
     ctx.arc(sx, sy, radius, 0, Math.PI * 2);
     ctx.fillStyle = isHovered || isPlaying ? baseColor : hexToRgba(baseColor, 0.7);
     ctx.fill();
-
+ 
     if (isHovered) {
       ctx.strokeStyle = 'rgba(255,255,255,0.5)';
       ctx.lineWidth = 1.5;
       ctx.stroke();
     }
   }
+ 
+  // Morph overlay: line between A & B, midpoint marker, halo on endpoints
+  if (state.morphMode && (state.morphA >= 0 || state.morphB >= 0)) {
+    const accent2 = '#4af0c8';
+ 
+    if (state.morphA >= 0) {
+      const pa = state.points[state.morphA];
+      const [ax, ay] = worldToScreen(pa.x, pa.y);
+      ctx.beginPath();
+      ctx.arc(ax, ay, 14, 0, Math.PI * 2);
+      ctx.strokeStyle = accent2;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.font = 'bold 11px monospace';
+      ctx.fillStyle = accent2;
+      ctx.textAlign = 'center';
+      ctx.fillText('A', ax, ay - 20);
+    }
+ 
+    if (state.morphB >= 0) {
+      const pb = state.points[state.morphB];
+      const [bx, by] = worldToScreen(pb.x, pb.y);
+      ctx.beginPath();
+      ctx.arc(bx, by, 14, 0, Math.PI * 2);
+      ctx.strokeStyle = accent2;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.font = 'bold 11px monospace';
+      ctx.fillStyle = accent2;
+      ctx.textAlign = 'center';
+      ctx.fillText('B', bx, by - 20);
+    }
+ 
+    if (state.morphA >= 0 && state.morphB >= 0) {
+      const pa = state.points[state.morphA];
+      const pb = state.points[state.morphB];
+      const [ax, ay] = worldToScreen(pa.x, pa.y);
+      const [bx, by] = worldToScreen(pb.x, pb.y);
+ 
+      // Dashed line
+      ctx.setLineDash([6, 6]);
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(bx, by);
+      ctx.strokeStyle = hexToRgba(accent2, 0.6);
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.setLineDash([]);
+ 
+      // Midpoint (based on blend slider)
+      const blend = (parseInt(document.getElementById('mpBlend')?.value || 50)) / 100;
+      const mx = ax + (bx - ax) * blend;
+      const my = ay + (by - ay) * blend;
+ 
+      // Pulsing halo
+      const pulse = (Math.sin(Date.now() * 0.004) * 0.5 + 0.5);
+      ctx.beginPath();
+      ctx.arc(mx, my, 10 + pulse * 4, 0, Math.PI * 2);
+      ctx.fillStyle = hexToRgba(accent2, 0.15 + pulse * 0.15);
+      ctx.fill();
+ 
+      ctx.beginPath();
+      ctx.arc(mx, my, 6, 0, Math.PI * 2);
+      ctx.fillStyle = accent2;
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
 }
-
+ 
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r},${g},${b},${alpha})`;
 }
-
+ 
+// ─── INTERACTION ─────────────────────────────────────────────
 let isDragging = false;
 let dragStart = null;
 let viewStart = null;
 let didDrag = false;
-
+ 
 canvas.addEventListener('mousedown', e => {
   dragStart = { x: e.clientX, y: e.clientY };
   viewStart = { x: state.view.x, y: state.view.y };
   didDrag = false;
 });
-
+ 
 window.addEventListener('mousemove', e => {
   if (dragStart) {
     const dx = e.clientX - dragStart.x;
     const dy = e.clientY - dragStart.y;
-
+ 
     if (!isDragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
       isDragging = true;
       didDrag = true;
     }
-
+ 
     if (isDragging) {
       const area = document.getElementById('canvasArea');
       const w = area.clientWidth;
@@ -1943,19 +2188,25 @@ window.addEventListener('mousemove', e => {
       return;
     }
   }
-
+ 
   if (!state.points.length) return;
-
   const rect = canvas.getBoundingClientRect();
   const mx = e.clientX - rect.left;
   const my = e.clientY - rect.top;
-  const closest = findClosestPoint(mx, my, 20);
-
+ 
+  let closest = -1;
+  let closestDist = 20;
+  for (let i = 0; i < state.points.length; i++) {
+    const [sx, sy] = worldToScreen(state.points[i].x, state.points[i].y);
+    const d = Math.sqrt((sx - mx) ** 2 + (sy - my) ** 2);
+    if (d < closestDist) { closestDist = d; closest = i; }
+  }
+ 
   if (closest !== state.hoveredIdx) {
     state.hoveredIdx = closest;
     drawMap();
   }
-
+ 
   const tooltip = document.getElementById('tooltip');
   if (closest >= 0) {
     canvas.style.cursor = 'pointer';
@@ -1972,88 +2223,105 @@ window.addEventListener('mousemove', e => {
     tooltip.style.display = 'none';
   }
 });
-
+ 
 window.addEventListener('mouseup', e => {
   const wasDrag = didDrag;
   isDragging = false;
   dragStart = null;
   viewStart = null;
-
-  if (!wasDrag && state.points.length) {
+ 
+  if (!wasDrag) {
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
-
+ 
     if (mx < 0 || my < 0 || mx > rect.width || my > rect.height) return;
-
-    const panel = document.getElementById('infoPanel');
-    if (panel && panel.offsetParent !== null) {
-      const pr = panel.getBoundingClientRect();
-      if (e.clientX >= pr.left && e.clientX <= pr.right && e.clientY >= pr.top && e.clientY <= pr.bottom) return;
+ 
+    const overlays = ['infoPanel', 'morphPanel', 'morphToolbar'];
+    for (const id of overlays) {
+      const el = document.getElementById(id);
+      if (el && el.offsetParent !== null) { // visible
+        const pr = el.getBoundingClientRect();
+        if (e.clientX >= pr.left && e.clientX <= pr.right && e.clientY >= pr.top && e.clientY <= pr.bottom) {
+          return;
+        }
+      }
     }
-
-    const closest = findClosestPoint(mx, my, 20);
+ 
+    // Find closest point
+    let closest = -1;
+    let closestDist = 20;
+    for (let i = 0; i < state.points.length; i++) {
+      const [sx, sy] = worldToScreen(state.points[i].x, state.points[i].y);
+      const d = Math.sqrt((sx - mx) ** 2 + (sy - my) ** 2);
+      if (d < closestDist) { closestDist = d; closest = i; }
+    }
+ 
     if (closest >= 0) {
-      const [sx, sy] = worldToScreen(state.points[closest].x, state.points[closest].y);
-      showInfoPanel(closest, sx, sy);
+      if (state.morphMode) {
+        morphPickPoint(closest);
+      } else {
+        const [sx, sy] = worldToScreen(state.points[closest].x, state.points[closest].y);
+        showInfoPanel(closest, sx, sy);
+      }
     } else {
-      closeInfoPanel();
+      if (!state.morphMode) closeInfoPanel();
     }
   }
-
+ 
   didDrag = false;
 });
-
-function findClosestPoint(mx, my, maxDist) {
-  let closest = -1;
-  let closestDist = maxDist;
-
-  for (let i = 0; i < state.points.length; i++) {
-    const [sx, sy] = worldToScreen(state.points[i].x, state.points[i].y);
-    const d = Math.sqrt((sx - mx) ** 2 + (sy - my) ** 2);
-    if (d < closestDist) {
-      closestDist = d;
-      closest = i;
-    }
+ 
+document.getElementById('infoPanel').addEventListener('mousedown', e => e.stopPropagation());
+document.getElementById('infoPanel').addEventListener('mouseup', e => e.stopPropagation());
+document.getElementById('infoPanel').addEventListener('click', e => e.stopPropagation());
+ 
+['morphPanel', 'morphToolbar'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('mousedown', e => e.stopPropagation());
+    el.addEventListener('mouseup', e => e.stopPropagation());
+    el.addEventListener('click', e => e.stopPropagation());
   }
-
-  return closest;
-}
-
+});
+ 
 canvas.addEventListener('wheel', e => {
   e.preventDefault();
   const factor = e.deltaY > 0 ? 0.9 : 1.1;
   zoomMap(factor);
 }, { passive: false });
-
+ 
 function zoomMap(factor) {
   state.view.scale *= factor;
   state.view.scale = Math.max(0.2, Math.min(state.view.scale, 20));
   drawMap();
 }
-
+ 
 function resetView() {
   state.view = { x: 0, y: 0, scale: 1 };
   drawMap();
 }
-
+ 
+// ─── PLAYBACK ────────────────────────────────────────────────
+state.loopInterval = null;
+ 
 function playSegment(idx) {
   const actx = getAudioCtx();
   if (actx.state === 'suspended') actx.resume();
-
+ 
   if (state.playingIdx === idx) {
     stopPlayback();
     return;
   }
-
+ 
   stopPlayback();
-
+ 
   const p = state.points[idx];
   const seg = p.segment;
-  const duration = Math.max(0.02, seg.end - seg.start);
-
+  const duration = seg.end - seg.start;
+ 
   state.playingIdx = idx;
-
+ 
   function startLoop() {
     if (state.playingIdx !== idx) return;
     const source = actx.createBufferSource();
@@ -2062,57 +2330,57 @@ function playSegment(idx) {
     source.start(0, seg.start, duration);
     state.currentSource = source;
   }
-
+ 
   startLoop();
+  // Re-trigger loop
   state.loopInterval = setInterval(() => {
-    if (state.playingIdx !== idx) {
-      clearInterval(state.loopInterval);
-      return;
-    }
+    if (state.playingIdx !== idx) { clearInterval(state.loopInterval); return; }
     startLoop();
   }, duration * 1000);
-
+ 
   const np = document.getElementById('nowPlaying');
   np.style.display = 'flex';
-  document.getElementById('npText').textContent = `${state.files[p.fileIdx].name} — ${seg.start.toFixed(2)}s looping`;
-
+  document.getElementById('npText').textContent =
+    `${state.files[p.fileIdx].name} — ${seg.start.toFixed(2)}s (looping)`;
+ 
   drawMap();
   updatePlayButton();
 }
-
+ 
 function stopPlayback() {
   if (state.currentSource) {
     try { state.currentSource.stop(); } catch (e) {}
     state.currentSource = null;
   }
-
   if (state.loopInterval) {
     clearInterval(state.loopInterval);
     state.loopInterval = null;
   }
-
   state.playingIdx = -1;
   document.getElementById('nowPlaying').style.display = 'none';
   drawMap();
   updatePlayButton();
 }
-
+ 
+// ─── INFO PANEL ──────────────────────────────────────────────
+state.selectedIdx = -1;
 state.infoPanelOpenedAt = 0;
-
+ 
 function showInfoPanel(idx, screenX, screenY) {
   state.selectedIdx = idx;
   state.infoPanelOpenedAt = Date.now();
-
   const p = state.points[idx];
   const seg = p.segment;
   const panel = document.getElementById('infoPanel');
-
+ 
   document.getElementById('ipFile').textContent = state.files[p.fileIdx].name;
   document.getElementById('ipStart').textContent = formatTime(seg.start);
   document.getElementById('ipEnd').textContent = formatTime(seg.end);
-  document.getElementById('ipDur').textContent = formatDuration(seg.end - seg.start);
-  document.getElementById('ipIdx').textContent = seg.rawFile ? `Raw file #${idx + 1}` : `Segment #${idx + 1} of ${state.segments.length}`;
-
+  document.getElementById('ipDur').textContent = ((seg.end - seg.start) * 1000).toFixed(0) + ' ms';
+  document.getElementById('ipIdx').textContent = seg.rawFile
+      ? `File #${idx + 1} of ${state.segments.length}`
+      : `#${idx + 1} of ${state.segments.length}`;
+ 
   const area = document.getElementById('canvasArea');
   const aw = area.clientWidth;
   const ah = area.clientHeight;
@@ -2121,43 +2389,38 @@ function showInfoPanel(idx, screenX, screenY) {
   if (px + 290 > aw) px = screenX - 300;
   if (py + 200 > ah) py = ah - 210;
   if (py < 10) py = 10;
-
+ 
   panel.style.left = px + 'px';
   panel.style.top = py + 'px';
   panel.style.display = 'block';
-
+ 
   stopPlayback();
   updatePlayButton();
 }
-
-function closeInfoPanel(force = false) {
-  if (!force && Date.now() - state.infoPanelOpenedAt < 200) return;
+ 
+function closeInfoPanel() {
+  if (Date.now() - state.infoPanelOpenedAt < 200) return;
   document.getElementById('infoPanel').style.display = 'none';
   state.selectedIdx = -1;
 }
-
+ 
 function formatTime(sec) {
   const m = Math.floor(sec / 60);
   const s = sec % 60;
   return m > 0 ? `${m}:${s.toFixed(2).padStart(5, '0')}` : `${s.toFixed(2)}s`;
 }
-
-function formatDuration(sec) {
-  if (sec < 1) return `${(sec * 1000).toFixed(0)} ms`;
-  return `${sec.toFixed(2)} s`;
-}
-
+ 
 function playFromInfoPanel() {
   if (state.selectedIdx < 0) return;
-
-  if (state.playingIdx === state.selectedIdx) stopPlayback();
-  else playSegment(state.selectedIdx);
+  if (state.playingIdx === state.selectedIdx) {
+    stopPlayback();
+  } else {
+    playSegment(state.selectedIdx);
+  }
 }
-
+ 
 function updatePlayButton() {
   const btn = document.getElementById('ipPlayBtn');
-  if (!btn) return;
-
   if (state.playingIdx === state.selectedIdx && state.playingIdx >= 0) {
     btn.classList.add('playing');
     btn.textContent = '■ Stop';
@@ -2166,133 +2429,771 @@ function updatePlayButton() {
     btn.textContent = '▶ Play';
   }
 }
+ 
+// ─── 3D SPECTROGRAM VIEWER ──────────────────────────────────
+let spectroScene, spectroCamera, spectroRenderer, spectroAnimId;
+ 
+function percWeight(f) {
+  const hz = Math.max(20, f);
+  return Math.exp(-Math.pow((Math.log10(hz) - Math.log10(3000)) / 0.45, 2));
+}
+function C(x) { return Math.min(1, Math.max(0, x)); }
+ 
+// Noise
+function _h(x,y){ const s=Math.sin(x*127.1+y*311.7)*43758.5453; return s-Math.floor(s); }
+function _s(t){ return t*t*(3-2*t); }
+function _n(x,y){
+  const x0=Math.floor(x),y0=Math.floor(y),sx=_s(x-x0),sy=_s(y-y0);
+  return (_h(x0,y0)+(_h(x0+1,y0)-_h(x0,y0))*sx)*(1-sy)+(_h(x0,y0+1)+(_h(x0+1,y0+1)-_h(x0,y0+1))*sx)*sy;
+}
+function fbm(x,y){let v=0,a=.5,f=1;for(let i=0;i<5;i++){v+=a*(_n(x*f,y*f)-.5);f*=2;a*=.5;}return v;}
+ 
 
-['infoPanel'].forEach(id => {
-  const el = document.getElementById(id);
-  el.addEventListener('mousedown', e => e.stopPropagation());
-  el.addEventListener('mouseup', e => e.stopPropagation());
-  el.addEventListener('click', e => e.stopPropagation());
-});
-
-function openSpectrogramViewer() {
+const P = [
+  [0.02,0.02,0.06], [0.04,0.06,0.20], [0.06,0.14,0.42],
+  [0.08,0.30,0.58], [0.06,0.52,0.60], [0.15,0.68,0.48],
+  [0.40,0.76,0.30], [0.70,0.78,0.18], [0.92,0.68,0.12],
+  [1.00,0.48,0.14], [1.00,0.72,0.55], [1.00,0.90,0.85],
+];
+function pal(t){
+  const x=C(t)*(P.length-1), i=Math.min(Math.floor(x),P.length-2), f=x-i;
+  return [P[i][0]+(P[i+1][0]-P[i][0])*f, P[i][1]+(P[i+1][1]-P[i][1])*f, P[i][2]+(P[i+1][2]-P[i][2])*f];
+}
+ 
+function bilerp(g,x,y){
+  const x0=Math.floor(x),y0=Math.floor(y);
+  const x1=Math.min(x0+1,g.length-1),y1=Math.min(y0+1,(g[0]?.length||1)-1);
+  const tx=x-x0,ty=y-y0;
+  return (g[x0][y0]+(g[x1][y0]-g[x0][y0])*tx)*(1-ty)+(g[x0][y1]+(g[x1][y1]-g[x0][y1])*tx)*ty;
+}
+ 
+function open3DViewer() {
   if (state.selectedIdx < 0) return;
-
   const p = state.points[state.selectedIdx];
-  const seg = p.segment;
-  document.getElementById('modalTitle').textContent = `${state.files[p.fileIdx].name} · ${formatTime(seg.start)}–${formatTime(seg.end)}`;
+  const seg = p.segment, buf = seg.audioBuffer, sr = buf.sampleRate;
+  const raw = buf.getChannelData(0);
+  const segment = raw.slice(Math.floor(seg.start*sr), Math.min(Math.floor(seg.end*sr), raw.length));
+ 
+  document.getElementById('modalTitle').textContent =
+    `${state.files[p.fileIdx].name} · ${formatTime(seg.start)}–${formatTime(seg.end)}`;
   document.getElementById('spectroModal').classList.add('open');
-
-  setTimeout(() => drawSpectrogram(seg), 0);
+ 
+  const N = 4096, hop = 64;
+  const nF = Math.floor((segment.length - N) / hop);
+  const nB = N / 2 + 1;
+  if (nF < 2) return;
+ 
+  const freqs = new Float32Array(nB);
+  for (let k = 0; k < nB; k++) freqs[k] = (k * sr) / N;
+ 
+  const pw = []; let mx = 0;
+  for (let f = 0; f < nF; f++) {
+    const re = new Float32Array(N), im = new Float32Array(N);
+    for (let i = 0; i < N; i++) re[i] = (segment[f*hop+i]||0) * (0.5 - 0.5*Math.cos(2*Math.PI*i/(N-1)));
+    fftInPlace(re, im);
+    const r = new Float32Array(nB);
+    for (let k = 0; k < nB; k++) { r[k] = re[k]*re[k]+im[k]*im[k]; if(r[k]>mx) mx=r[k]; }
+    pw.push(r);
+  }
+ 
+  const S = []; let dMn=Infinity, dMx=-Infinity;
+  for (let f = 0; f < nF; f++) {
+    const r = new Float32Array(nB);
+    for (let k = 0; k < nB; k++) {
+      const d = 10*Math.log10(Math.max(1e-10,pw[f][k])/Math.max(1e-10,mx));
+      r[k]=d; if(d<dMn)dMn=d; if(d>dMx)dMx=d;
+    }
+    S.push(r);
+  }
+ 
+  render3D(S, nF, nB, freqs, dMx, Math.max(dMn, dMx-65));
 }
-
-function closeSpectrogramViewer() {
-  document.getElementById('spectroModal').classList.remove('open');
+ 
+function render3D(S, srcF, srcB, freqs, dMx, dMn) {
+  const box = document.getElementById('modalBody');
+  if (spectroRenderer) {
+    cancelAnimationFrame(spectroAnimId);
+    try { box.removeChild(spectroRenderer.domElement); } catch(e) {}
+    spectroRenderer.dispose();
+  }
+ 
+  const W = box.clientWidth, H = box.clientHeight;
+  spectroScene = new THREE.Scene();
+  spectroScene.background = new THREE.Color(0x06060c);
+ 
+  spectroCamera = new THREE.PerspectiveCamera(38, W/H, 0.1, 400);
+  spectroRenderer = new THREE.WebGLRenderer({ antialias: true });
+  spectroRenderer.setSize(W, H);
+  spectroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container = box;
+  box.appendChild(spectroRenderer.domElement);
+ 
+  // ── High-res mesh ──
+  const mF = Math.min(srcF, 1200), mB = Math.min(srcB, 700);
+  const tW = 15, tD = 9, maxH = 1.6;
+  const floor = 0.10;
+ 
+  // Freq warp
+  const warp = 0.55, fLo = 20, fHi = freqs[srcB-1]||22050;
+  const lnLo = Math.log(fLo+1), lnHi = Math.log(fHi+1);
+  function fBin(nz) {
+    const lin = fLo+nz*(fHi-fLo), log = Math.exp(lnLo+nz*(lnHi-lnLo))-1;
+    return C((lin*(1-warp)+log*warp)/fHi) * (srcB-1);
+  }
+ 
+  const verts = new Float32Array(mF * mB * 3);
+  const colors = new Float32Array(mF * mB * 3);
+  const emissive = new Float32Array(mF * mB * 3); // per-vertex emissive
+  const indices = [];
+ 
+  for (let iz = 0; iz < mB; iz++) {
+    const nz = iz / (mB-1);
+    const srcZ = fBin(nz);
+    const hz = freqs[Math.min(Math.round(srcZ), freqs.length-1)] || 0;
+    const pw = percWeight(hz);
+    const fw = 0.4 + 0.6 * pw;
+    const zPos = (nz - 0.5) * tD;
+ 
+    for (let ix = 0; ix < mF; ix++) {
+      const vi = iz * mF + ix;
+      const srcX = (ix/(mF-1)) * (srcF-1);
+      const db = bilerp(S, srcX, srcZ);
+      const t = C((db - dMn) / (dMx - dMn || 1));
+ 
+      const sig = Math.pow(t, 1.3) * fw;
+      const y = (floor + sig * (1 - floor)) * maxH;
+ 
+      const tex = fbm(ix * 0.025, iz * 0.035) * 0.03 * (0.1 + t);
+ 
+      verts[vi*3]   = (ix/(mF-1) - 0.5) * tW;
+      verts[vi*3+1] = y + tex;
+      verts[vi*3+2] = zPos;
+ 
+      // Color
+      const [cr,cg,cb] = pal(Math.pow(t, 0.8));
+      const nv = fbm(ix*0.05, iz*0.05) * 0.02;
+      colors[vi*3]   = C(cr + nv);
+      colors[vi*3+1] = C(cg + nv * 0.6);
+      colors[vi*3+2] = C(cb + nv * 0.4);
+ 
+     
+      const glow = Math.pow(t, 1.5) * 0.7;
+      emissive[vi*3]   = cr * glow;
+      emissive[vi*3+1] = cg * glow * 0.85;
+      emissive[vi*3+2] = cb * glow * 0.7;
+    }
+  }
+ 
+  // Triangle indices
+  for (let iz = 0; iz < mB-1; iz++) {
+    for (let ix = 0; ix < mF-1; ix++) {
+      const a = iz*mF+ix, b = a+1, c = (iz+1)*mF+ix, d = c+1;
+      indices.push(a,b,c, b,d,c);
+    }
+  }
+ 
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+ 
+  
+  const mat = new THREE.ShaderMaterial({
+    vertexShader: `
+      varying vec3 vColor;
+      varying vec3 vEmissive;
+      varying vec3 vNormal;
+      varying vec3 vViewPos;
+      attribute vec3 color;
+ 
+      void main() {
+        vColor = color;
+        vNormal = normalize(normalMatrix * normal);
+        vec4 mvPos = modelViewMatrix * vec4(position, 1.0);
+        vViewPos = -mvPos.xyz;
+        gl_Position = projectionMatrix * mvPos;
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying vec3 vNormal;
+      varying vec3 vViewPos;
+ 
+      void main() {
+        vec3 lightDir = normalize(vec3(0.3, 1.0, 0.2));
+        float diff = max(dot(vNormal, lightDir), 0.0) * 0.35 + 0.15;
+ 
+     
+        float luminance = dot(vColor, vec3(0.299, 0.587, 0.114));
+        float selfGlow = pow(luminance, 0.8) * 0.8;
+ 
+        vec3 lit = vColor * (diff + selfGlow);
+ 
+        vec3 viewDir = normalize(vViewPos);
+        float fresnel = pow(1.0 - max(dot(vNormal, viewDir), 0.0), 3.0);
+        lit += vec3(0.03, 0.04, 0.08) * fresnel;
+ 
+        gl_FragColor = vec4(lit, 1.0);
+      }
+    `,
+    side: THREE.DoubleSide,
+  });
+ 
+  spectroScene.add(new THREE.Mesh(geo, mat));
+ 
+  const gridGroup = new THREE.Group();
+ 
+  const gridMat = new THREE.LineBasicMaterial({ color: 0x18183a, transparent: true, opacity: 0.5 });
+  const gridStep = 1.0;
+  for (let x = -tW/2; x <= tW/2; x += gridStep) {
+    const g = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(x, 0, -tD/2), new THREE.Vector3(x, 0, tD/2)
+    ]);
+    gridGroup.add(new THREE.Line(g, gridMat));
+  }
+  for (let z = -tD/2; z <= tD/2; z += gridStep) {
+    const g = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-tW/2, 0, z), new THREE.Vector3(tW/2, 0, z)
+    ]);
+    gridGroup.add(new THREE.Line(g, gridMat));
+  }
+ 
+  const subMat = new THREE.LineBasicMaterial({ color: 0x10102a, transparent: true, opacity: 0.25 });
+  const subStep = 0.25;
+  for (let x = -tW/2; x <= tW/2; x += subStep) {
+    if (Math.abs(x % gridStep) < 0.01) continue; // skip majors
+    const g = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(x, 0, -tD/2), new THREE.Vector3(x, 0, tD/2)
+    ]);
+    gridGroup.add(new THREE.Line(g, subMat));
+  }
+  for (let z = -tD/2; z <= tD/2; z += subStep) {
+    if (Math.abs(z % gridStep) < 0.01) continue;
+    const g = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-tW/2, 0, z), new THREE.Vector3(tW/2, 0, z)
+    ]);
+    gridGroup.add(new THREE.Line(g, subMat));
+  }
+ 
+  gridGroup.position.y = -0.01;
+  spectroScene.add(gridGroup);
+ 
+  const gnd = new THREE.Mesh(
+    new THREE.PlaneGeometry(tW + 6, tD + 6),
+    new THREE.MeshBasicMaterial({ color: 0x060610 })
+  );
+  gnd.rotation.x = -Math.PI / 2;
+  gnd.position.y = -0.02;
+  spectroScene.add(gnd);
+ 
+  spectroScene.add(new THREE.AmbientLight(0x0a0a14, 0.3));
+  const soft = new THREE.DirectionalLight(0xccccdd, 0.15);
+  soft.position.set(0, 10, 0);
+  spectroScene.add(soft);
+ 
+  // Labels
+  function lbl(text, p3) {
+    const cv = document.createElement('canvas');
+    cv.width = 200; cv.height = 40;
+    const cx = cv.getContext('2d');
+    cx.fillStyle = '#44446688';
+    cx.font = '14px monospace';
+    cx.textAlign = 'center';
+    cx.fillText(text, 100, 28);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: new THREE.CanvasTexture(cv), transparent: true, opacity: 0.35
+    }));
+    sp.scale.set(2, 0.4, 1);
+    sp.position.copy(p3);
+    return sp;
+  }
+  spectroScene.add(lbl('time →', new THREE.Vector3(0, -0.04, -tD/2 - 0.7)));
+  spectroScene.add(lbl('freq →', new THREE.Vector3(-tW/2 - 1, -0.04, 0)));
+ 
+  // ── Camera ──
+  let drag = false, pm = {x:0,y:0}, autoR = true;
+  let tT = 0.4, tP = 0.65, tR = 19, cT = tT, cP = tP, cR = tR;
+ 
+  function camUp() {
+    cT += (tT-cT)*0.06; cP += (tP-cP)*0.06; cR += (tR-cR)*0.06;
+    spectroCamera.position.set(cR*Math.sin(cP)*Math.sin(cT), cR*Math.cos(cP), cR*Math.sin(cP)*Math.cos(cT));
+    spectroCamera.lookAt(0, maxH*0.25, 0);
+  }
+  camUp();
+ 
+  const el = spectroRenderer.domElement;
+  el.addEventListener('mousedown', e => { drag=true; autoR=false; pm={x:e.clientX,y:e.clientY}; });
+  el.addEventListener('mousemove', e => { if(!drag) return; tT+=(e.clientX-pm.x)*0.004; tP=Math.max(0.08,Math.min(1.5,tP+(e.clientY-pm.y)*0.004)); pm={x:e.clientX,y:e.clientY}; });
+  el.addEventListener('mouseup', () => drag=false);
+  el.addEventListener('mouseleave', () => drag=false);
+  el.addEventListener('wheel', e => { e.preventDefault(); tR*=e.deltaY>0?1.05:0.95; tR=Math.max(4,Math.min(35,tR)); }, {passive:false});
+ 
+  let ltd=0;
+  el.addEventListener('touchstart', e => {
+    if(e.touches.length===1){drag=true;autoR=false;pm={x:e.touches[0].clientX,y:e.touches[0].clientY};}
+    else if(e.touches.length===2){drag=false;const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;ltd=Math.sqrt(dx*dx+dy*dy);}
+  });
+  el.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if(e.touches.length===1&&drag){tT+=(e.touches[0].clientX-pm.x)*0.004;tP=Math.max(0.08,Math.min(1.5,tP+(e.touches[0].clientY-pm.y)*0.004));pm={x:e.touches[0].clientX,y:e.touches[0].clientY};}
+    else if(e.touches.length===2){const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY,d=Math.sqrt(dx*dx+dy*dy);tR*=ltd/d;tR=Math.max(4,Math.min(35,tR));ltd=d;}
+  }, {passive:false});
+  el.addEventListener('touchend', () => drag=false);
+ 
+  function anim() {
+    spectroAnimId = requestAnimationFrame(anim);
+    if(autoR) tT += 0.0006;
+    camUp();
+    spectroRenderer.render(spectroScene, spectroCamera);
+  }
+  anim();
+ 
+  const ro = new ResizeObserver(() => {
+    spectroCamera.aspect = box.clientWidth/box.clientHeight;
+    spectroCamera.updateProjectionMatrix();
+    spectroRenderer.setSize(box.clientWidth, box.clientHeight);
+  });
+  ro.observe(box);
+  spectroScene.userData.resObs = ro;
 }
-
-function drawSpectrogram(seg) {
-  const cv = document.getElementById('spectroCanvas');
-  const modalBody = document.getElementById('modalBody');
-  const c = cv.getContext('2d');
-  const width = modalBody.clientWidth;
-  const height = modalBody.clientHeight;
-  const ratio = window.devicePixelRatio || 1;
-
-  cv.width = width * ratio;
-  cv.height = height * ratio;
-  cv.style.width = width + 'px';
-  cv.style.height = height + 'px';
-  c.setTransform(ratio, 0, 0, ratio, 0, 0);
-  c.clearRect(0, 0, width, height);
-
+ 
+// ─── MORPH (fake-VAE between two segments) ──────────────────
+function toggleMorphMode() {
+  state.morphMode = !state.morphMode;
+  const btn = document.getElementById('morphToggle');
+  const panel = document.getElementById('morphPanel');
+ 
+  if (state.morphMode) {
+    btn.classList.add('active');
+    btn.textContent = '◆ Morph Mode: Pick 2 Points';
+    panel.classList.add('visible');
+    closeInfoPanel();
+    stopMorphPlayback();
+    updateMorphUI();
+    // Constant redraw so the pulsing midpoint animates
+    startMorphAnim();
+  } else {
+    btn.classList.remove('active');
+    btn.textContent = '◇ Morph Between Two';
+    panel.classList.remove('visible');
+    clearMorph();
+    stopMorphAnim();
+  }
+}
+ 
+let morphAnimId = null;
+function startMorphAnim() {
+  if (morphAnimId) return;
+  function tick() {
+    if (state.morphMode) {
+      drawMap();
+      morphAnimId = requestAnimationFrame(tick);
+    } else {
+      morphAnimId = null;
+    }
+  }
+  morphAnimId = requestAnimationFrame(tick);
+}
+function stopMorphAnim() {
+  if (morphAnimId) { cancelAnimationFrame(morphAnimId); morphAnimId = null; }
+  drawMap();
+}
+ 
+function morphPickPoint(idx) {
+  // Toggle: if already set, deselect
+  if (state.morphA === idx) { state.morphA = -1; }
+  else if (state.morphB === idx) { state.morphB = -1; }
+  else if (state.morphA < 0) { state.morphA = idx; }
+  else if (state.morphB < 0) { state.morphB = idx; }
+  else {
+    // Both set — replace oldest (B), shift A→B, new→A
+    state.morphB = state.morphA;
+    state.morphA = idx;
+  }
+ 
+  // New selection invalidates previous morph
+  state.morphBuffer = null;
+  document.getElementById('mpPlayBtn').disabled = true;
+ 
+  updateMorphUI();
+}
+ 
+function updateMorphUI() {
+  const endA = document.getElementById('mpEndA');
+  const endB = document.getElementById('mpEndB');
+  const status = document.getElementById('mpStatus');
+  const genBtn = document.getElementById('mpGenerateBtn');
+ 
+  if (state.morphA >= 0) {
+    const p = state.points[state.morphA];
+    const s = p.segment;
+    endA.textContent = `A: ${state.files[p.fileIdx].name.slice(0, 14)} · ${s.start.toFixed(2)}s`;
+    endA.style.color = 'var(--accent2)';
+  } else {
+    endA.textContent = 'A: (pick a point)';
+    endA.style.color = 'var(--text-muted)';
+  }
+ 
+  if (state.morphB >= 0) {
+    const p = state.points[state.morphB];
+    const s = p.segment;
+    endB.textContent = `B: ${state.files[p.fileIdx].name.slice(0, 14)} · ${s.start.toFixed(2)}s`;
+    endB.style.color = 'var(--accent2)';
+  } else {
+    endB.textContent = 'B: (pick a point)';
+    endB.style.color = 'var(--text-muted)';
+  }
+ 
+  if (state.morphA >= 0 && state.morphB >= 0) {
+    genBtn.disabled = false;
+    status.textContent = 'Ready to generate morph';
+  } else {
+    genBtn.disabled = true;
+    const need = (state.morphA < 0 ? 'A' : 'B');
+    status.textContent = `Pick point ${need}`;
+  }
+}
+ 
+// Live blend slider
+document.addEventListener('DOMContentLoaded', () => {
+  const bl = document.getElementById('mpBlend');
+  if (bl) {
+    bl.addEventListener('input', e => {
+      document.getElementById('mpBlendValue').textContent = e.target.value + '%';
+      // Invalidate previous buffer when blend changes
+      state.morphBuffer = null;
+      document.getElementById('mpPlayBtn').disabled = true;
+    });
+  }
+});
+// Also attach immediately in case DOMContentLoaded already fired
+{
+  const bl = document.getElementById('mpBlend');
+  if (bl && !bl._hooked) {
+    bl._hooked = true;
+    bl.addEventListener('input', e => {
+      document.getElementById('mpBlendValue').textContent = e.target.value + '%';
+      state.morphBuffer = null;
+      const btn = document.getElementById('mpPlayBtn');
+      if (btn) btn.disabled = true;
+    });
+  }
+}
+ 
+function clearMorph() {
+  state.morphA = -1;
+  state.morphB = -1;
+  state.morphBuffer = null;
+  stopMorphPlayback();
+  document.getElementById('mpPlayBtn').disabled = true;
+  updateMorphUI();
+  drawMap();
+}
+ 
+// Extract audio samples for a segment as Float32Array
+function extractSegmentSamples(idx) {
+  const p = state.points[idx];
+  const seg = p.segment;
   const buf = seg.audioBuffer;
   const sr = buf.sampleRate;
   const data = buf.getChannelData(0);
-  const start = Math.floor(seg.start * sr);
-  const end = Math.min(Math.floor(seg.end * sr), data.length);
-  const samples = data.slice(start, end);
-
-  const fftSize = 1024;
-  const hop = Math.max(128, Math.floor((samples.length - fftSize) / Math.max(1, width)));
-  const frames = [];
-  let maxMag = 1e-12;
-
-  for (let off = 0; off + fftSize < samples.length; off += hop) {
-    const re = new Float32Array(fftSize);
-    const im = new Float32Array(fftSize);
-
-    for (let i = 0; i < fftSize; i++) {
-      const w = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (fftSize - 1));
-      re[i] = samples[off + i] * w;
-    }
-
-    fftInPlace(re, im);
-
-    const mag = new Float32Array(fftSize / 2);
-    for (let k = 0; k < mag.length; k++) {
-      mag[k] = Math.sqrt(re[k] * re[k] + im[k] * im[k]);
-      if (mag[k] > maxMag) maxMag = mag[k];
-    }
-    frames.push(mag);
+  const s0 = Math.floor(seg.start * sr);
+  const s1 = Math.min(Math.floor(seg.end * sr), data.length);
+  return { samples: data.slice(s0, s1), sr };
+}
+ 
+// Simple linear resampler to match lengths
+function resampleTo(samples, newLength) {
+  const out = new Float32Array(newLength);
+  const ratio = (samples.length - 1) / (newLength - 1);
+  for (let i = 0; i < newLength; i++) {
+    const x = i * ratio;
+    const x0 = Math.floor(x);
+    const x1 = Math.min(x0 + 1, samples.length - 1);
+    const t = x - x0;
+    out[i] = samples[x0] * (1 - t) + samples[x1] * t;
   }
-
-  if (!frames.length) {
-    c.fillStyle = '#8888a0';
-    c.font = '13px monospace';
-    c.textAlign = 'center';
-    c.fillText('Segment too short for spectrogram', width / 2, height / 2);
+  return out;
+}
+ 
+// Spectral fusion — blends STFT magnitudes in log domain, uses dominant source's phase.
+// This actually fuses frequency content (formants from A + harmonics from B, etc.)
+// rather than just summing waveforms.
+function spectralFusion(samplesA, samplesB, blend) {
+  const N = 1024;       // FFT size
+  const hop = N / 4;    // 75% overlap
+  const len = Math.max(samplesA.length, samplesB.length);
+ 
+  const a = resampleTo(samplesA, len);
+  const b = resampleTo(samplesB, len);
+ 
+  // Hann window
+  const win = new Float32Array(N);
+  for (let i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+ 
+  // COLA normalization for hop=N/4, Hann: sum of w^2 at hop spacing = 1.5
+  const colaScale = 1 / 1.5;
+ 
+  // Equal-power weights
+  const wA = Math.cos(blend * Math.PI / 2);
+  const wB = Math.sin(blend * Math.PI / 2);
+ 
+  const numFrames = Math.floor((len - N) / hop) + 1;
+  const out = new Float32Array(len + N);
+ 
+  // Reusable arrays
+  const reA = new Float32Array(N), imA = new Float32Array(N);
+  const reB = new Float32Array(N), imB = new Float32Array(N);
+  const reO = new Float32Array(N), imO = new Float32Array(N);
+ 
+  // Half-spectrum size
+  const halfN = N / 2;
+ 
+  for (let f = 0; f < numFrames; f++) {
+    const off = f * hop;
+ 
+    // Window + zero imaginary
+    for (let i = 0; i < N; i++) {
+      reA[i] = (a[off + i] || 0) * win[i];
+      imA[i] = 0;
+      reB[i] = (b[off + i] || 0) * win[i];
+      imB[i] = 0;
+    }
+ 
+    fftInPlace(reA, imA);
+    fftInPlace(reB, imB);
+ 
+    for (let k = 0; k <= halfN; k++) {
+      const magA = Math.sqrt(reA[k] * reA[k] + imA[k] * imA[k]);
+      const magB = Math.sqrt(reB[k] * reB[k] + imB[k] * imB[k]);
+ 
+  
+      const logMag = Math.log(magA + 1e-10) * (1 - blend) + Math.log(magB + 1e-10) * blend;
+      const mag = Math.max(0, Math.exp(logMag) - 1e-10);
+ 
+      const energyA = magA * wA;
+      const energyB = magB * wB;
+      let phRe, phIm;
+      if (energyA >= energyB) {
+        if (magA > 1e-10) { phRe = reA[k] / magA; phIm = imA[k] / magA; }
+        else { phRe = 1; phIm = 0; }
+      } else {
+        if (magB > 1e-10) { phRe = reB[k] / magB; phIm = imB[k] / magB; }
+        else { phRe = 1; phIm = 0; }
+      }
+ 
+      reO[k] = mag * phRe;
+      imO[k] = mag * phIm;
+    }
+ 
+    // Enforce Hermitian symmetry for real output
+    // For k = 1..halfN-1: bin[N-k] = conjugate of bin[k]
+    for (let k = 1; k < halfN; k++) {
+      reO[N - k] = reO[k];
+      imO[N - k] = -imO[k];
+    }
+    // Bin 0 (DC) and Nyquist (halfN) must be purely real
+    imO[0] = 0;
+    imO[halfN] = 0;
+ 
+    // Inverse FFT via conjugate method:
+    // IFFT(X) = (1/N) * conj(FFT(conj(X)))
+    for (let i = 0; i < N; i++) imO[i] = -imO[i];
+    fftInPlace(reO, imO);
+    const invN = 1 / N;
+    for (let i = 0; i < N; i++) reO[i] *= invN;
+    // (imaginary part should be ~zero now thanks to Hermitian symmetry; we ignore it)
+ 
+    // Windowed overlap-add
+    for (let i = 0; i < N; i++) {
+      out[off + i] += reO[i] * win[i] * colaScale;
+    }
+  }
+ 
+  // Trim any trailing zeros and apply fade + normalize
+  const result = out.slice(0, len);
+ 
+  let peak = 0;
+  for (let i = 0; i < len; i++) if (Math.abs(result[i]) > peak) peak = Math.abs(result[i]);
+  if (peak > 0) {
+    const norm = 0.9 / peak;
+    for (let i = 0; i < len; i++) result[i] *= norm;
+  }
+ 
+  // Short fade in/out
+  const fadeLen = Math.min(Math.floor(len * 0.01), 256);
+  for (let i = 0; i < fadeLen; i++) {
+    const fv = i / fadeLen;
+    result[i] *= fv;
+    result[len - 1 - i] *= fv;
+  }
+ 
+  return result;
+}
+ 
+// Simple time-domain fallback (still useful if spectral fails)
+function morphSamples(samplesA, samplesB, blend) {
+  const len = Math.max(samplesA.length, samplesB.length);
+  const a = resampleTo(samplesA, len);
+  const b = resampleTo(samplesB, len);
+ 
+  const wA = Math.cos(blend * Math.PI / 2);
+  const wB = Math.sin(blend * Math.PI / 2);
+ 
+  let rmsA = 0, rmsB = 0;
+  for (let i = 0; i < len; i++) { rmsA += a[i]*a[i]; rmsB += b[i]*b[i]; }
+  rmsA = Math.sqrt(rmsA / len) || 1e-6;
+  rmsB = Math.sqrt(rmsB / len) || 1e-6;
+  const targetRms = rmsA * wA + rmsB * wB;
+  const scaleA = targetRms / rmsA;
+  const scaleB = targetRms / rmsB;
+ 
+  const out = new Float32Array(len);
+  let peak = 0;
+  for (let i = 0; i < len; i++) {
+    out[i] = a[i] * wA * scaleA + b[i] * wB * scaleB;
+    if (Math.abs(out[i]) > peak) peak = Math.abs(out[i]);
+  }
+  if (peak > 0) {
+    const norm = 0.9 / peak;
+    for (let i = 0; i < len; i++) out[i] *= norm;
+  }
+  const fadeLen = Math.min(Math.floor(len * 0.01), 256);
+  for (let i = 0; i < fadeLen; i++) {
+    const f = i / fadeLen;
+    out[i] *= f;
+    out[len - 1 - i] *= f;
+  }
+  return out;
+}
+ 
+async function generateMorph() {
+  if (state.morphA < 0 || state.morphB < 0) return;
+ 
+  // Stop any current morph playback before regenerating
+  stopMorphPlayback();
+ 
+  const status = document.getElementById('mpStatus');
+  const genBtn = document.getElementById('mpGenerateBtn');
+  genBtn.disabled = true;
+  status.textContent = 'Generating morph…';
+ 
+  // Yield so UI can update
+  await new Promise(r => setTimeout(r, 20));
+ 
+  try {
+    const A = extractSegmentSamples(state.morphA);
+    const B = extractSegmentSamples(state.morphB);
+ 
+    // Match sample rates (use A's rate)
+    const targetSr = A.sr;
+    let bSamples = B.samples;
+    if (B.sr !== targetSr) {
+      bSamples = resampleTo(bSamples, Math.round(bSamples.length * targetSr / B.sr));
+    }
+ 
+    // Match lengths — interpolate between lengths based on blend
+    const blend = parseInt(document.getElementById('mpBlend').value) / 100;
+    const targetLen = Math.round(A.samples.length * (1 - blend) + bSamples.length * blend);
+ 
+    const aResampled = resampleTo(A.samples, targetLen);
+    const bResampled = resampleTo(bSamples, targetLen);
+ 
+    // Spectral fusion — blends frequency content of both segments
+    const morphed = spectralFusion(aResampled, bResampled, blend);
+ 
+    // Build AudioBuffer
+    const actx = getAudioCtx();
+    const ab = actx.createBuffer(1, morphed.length, targetSr);
+    ab.copyToChannel(morphed, 0);
+    state.morphBuffer = ab;
+ 
+    document.getElementById('mpPlayBtn').disabled = false;
+    status.textContent = `Generated ✓ (${(morphed.length / targetSr).toFixed(2)}s)`;
+  } catch (err) {
+    console.error(err);
+    status.textContent = 'Error: ' + err.message;
+  } finally {
+    genBtn.disabled = false;
+  }
+}
+ 
+function playMorph() {
+  if (!state.morphBuffer) return;
+ 
+  // Toggle: if currently playing, stop and return
+  if (state.morphPlaying) {
+    stopMorphPlayback();
     return;
   }
-
-  const image = c.createImageData(width, height);
-
-  for (let x = 0; x < width; x++) {
-    const frame = frames[Math.floor((x / width) * frames.length)] || frames[frames.length - 1];
-
-    for (let y = 0; y < height; y++) {
-      const normY = 1 - y / height;
-      const bin = Math.min(frame.length - 1, Math.floor(normY * normY * frame.length));
-      const db = 20 * Math.log10((frame[bin] + 1e-12) / maxMag);
-      const t = Math.max(0, Math.min(1, (db + 70) / 70));
-      const col = spectroColor(Math.pow(t, 0.7));
-      const idx = (y * width + x) * 4;
-      image.data[idx] = col[0];
-      image.data[idx + 1] = col[1];
-      image.data[idx + 2] = col[2];
-      image.data[idx + 3] = 255;
-    }
+ 
+  const actx = getAudioCtx();
+  if (actx.state === 'suspended') actx.resume();
+ 
+  // Stop any other playback (regular segment playback)
+  stopPlayback();
+ 
+  const source = actx.createBufferSource();
+  source.buffer = state.morphBuffer;
+  source.loop = true;
+  source.connect(actx.destination);
+  source.start();
+ 
+  state.morphSource = source;
+  state.morphPlaying = true;
+ 
+  const btn = document.getElementById('mpPlayBtn');
+  btn.textContent = '■ Stop';
+  btn.classList.add('primary');
+ 
+  document.getElementById('mpStatus').textContent = 'Looping morph…';
+}
+ 
+function stopMorphPlayback() {
+  if (state.morphSource) {
+    try { state.morphSource.stop(); } catch(e) {}
+    try { state.morphSource.disconnect(); } catch(e) {}
+    state.morphSource = null;
   }
-
-  c.putImageData(image, 0, 0);
+  state.morphPlaying = false;
+ 
+  const btn = document.getElementById('mpPlayBtn');
+  if (btn) {
+    btn.textContent = '▶ Play';
+    btn.classList.remove('primary');
+  }
+  const status = document.getElementById('mpStatus');
+  if (status && state.morphBuffer) {
+    status.textContent = `Generated ✓ (${(state.morphBuffer.length / state.morphBuffer.sampleRate).toFixed(2)}s)`;
+  }
 }
-
-function spectroColor(t) {
-  const stops = [
-    [8, 8, 20],
-    [30, 30, 90],
-    [20, 120, 140],
-    [90, 190, 100],
-    [245, 150, 50],
-    [255, 230, 210]
-  ];
-  const x = Math.max(0, Math.min(1, t)) * (stops.length - 1);
-  const i = Math.min(stops.length - 2, Math.floor(x));
-  const f = x - i;
-  return [
-    Math.round(stops[i][0] + (stops[i + 1][0] - stops[i][0]) * f),
-    Math.round(stops[i][1] + (stops[i + 1][1] - stops[i][1]) * f),
-    Math.round(stops[i][2] + (stops[i + 1][2] - stops[i][2]) * f)
-  ];
+ 
+function close3DViewer() {
+  const modal = document.getElementById('spectroModal');
+  modal.classList.remove('open');
+  if (spectroAnimId) cancelAnimationFrame(spectroAnimId);
+  if (spectroRenderer) {
+    const container = document.getElementById('modalBody');
+    if (spectroScene && spectroScene.userData.resObs) {
+      spectroScene.userData.resObs.disconnect();
+    }
+    try { container.removeChild(spectroRenderer.domElement); } catch(e) {}
+    spectroRenderer.dispose();
+    spectroRenderer = null;
+  }
 }
-
+ 
+// Close modal on overlay click
 document.getElementById('spectroModal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeSpectrogramViewer();
+  if (e.target === e.currentTarget) close3DViewer();
 });
-
+ 
+// Close modal on Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    closeSpectrogramViewer();
-    closeInfoPanel(true);
-    stopPlayback();
+    close3DViewer();
+    closeInfoPanel();
   }
 });
 </script>
